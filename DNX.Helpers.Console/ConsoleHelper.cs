@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using DNX.Helpers.Assemblies;
-using DNX.Helpers.Console;
 using DNX.Helpers.Strings.Interpolation;
 
 namespace DNX.Helpers.Console
 {
+    /// <summary>
+    /// Enum DisplayAtAlignment
+    /// </summary>
     public enum DisplayAtAlignment
     {
         Left,
@@ -47,7 +49,7 @@ namespace DNX.Helpers.Console
         {
             var headers = new[]
             {
-                "{Name} v{Version} - {Description}",
+                "{Name} v{version.Major}.{version.Minor} - {Description}",
                 "{Copyright}"
             };
 
@@ -62,8 +64,15 @@ namespace DNX.Helpers.Console
         /// <param name="writer">The writer.</param>
         public static void DisplayHeader(AssemblyDetails assemblyDetails, IList<string> headers, TextWriter writer)
         {
+            var instances = new[]
+            {
+                new NamedInstance(assemblyDetails),
+                new NamedInstance(assemblyDetails.Version, "version"),
+                new NamedInstance(assemblyDetails.AssemblyName, "assemblyName"),
+            };
+
             headers.ToList()
-                .ForEach(h => writer.WriteLine(h.InterpolateWith(assemblyDetails)));
+                .ForEach(h => writer.WriteLine(h.InterpolateWithAll(instances)));
         }
 
         /// <summary>
@@ -104,16 +113,21 @@ namespace DNX.Helpers.Console
         }
 
         /// <summary>
-        ///
+        /// Displays the specified s.
         /// </summary>
-        /// <param name="s"></param>
-        /// <param name="wtr"></param>
+        /// <param name="s">The s.</param>
+        /// <param name="wtr">The WTR.</param>
+        /// <param name="newline">The newline.</param>
         public static void Display(string s, TextWriter wtr, bool newline)
         {
             if (newline)
+            {
                 wtr.WriteLine(s);
+            }
             else
+            {
                 wtr.Write(s);
+            }
         }
 
         /// <summary>

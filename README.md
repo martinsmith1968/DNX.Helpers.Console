@@ -48,14 +48,15 @@ Class ConsoleColourChanger.
 | s | *System.String*<br> |
 | wtr | *System.IO.TextWriter*<br> |
 
-### M:DNX.Helpers.Console.Display(System.String,System.IO.TextWriter,System.Boolean)
+### M:DNX.Helpers.Console.Display(s, wtr, newline)
 
-
+Displays the specified s.
 
 | Name | Description |
 | ---- | ----------- |
-| s | *System.String*<br> |
-| wtr | *System.IO.TextWriter*<br> |
+| s | *System.String*<br>The s. |
+| wtr | *System.IO.TextWriter*<br>The WTR. |
+| newline | *System.Boolean*<br>The newline. |
 
 ### M:DNX.Helpers.Console.DisplayAt(y, x, text)
 
@@ -136,4 +137,9 @@ Moves to.
 | ---- | ----------- |
 | y | *System.Int32*<br>The y. |
 | x | *System.Int32*<br>The x. |
+
+## DisplayAtAlignment
+
+Enum DisplayAtAlignment
+
 
