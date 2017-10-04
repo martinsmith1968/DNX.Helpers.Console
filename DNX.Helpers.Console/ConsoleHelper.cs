@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using DNX.Helpers.Assemblies;
+using DNX.Helpers.Console;
+using DNX.Helpers.Strings.Interpolation;
 
 namespace DNX.Helpers.Console
 {
@@ -24,6 +28,16 @@ namespace DNX.Helpers.Console
             DisplayHeader(assemblyDetails, System.Console.Out);
         }
 
+        /// <summary>
+        /// Displays the header.
+        /// </summary>
+        /// <param name="assemblyDetails">The assembly details.</param>
+        /// <param name="headers">The headers.</param>
+        public static void DisplayHeader(AssemblyDetails assemblyDetails, IList<string> headers)
+        {
+            DisplayHeader(assemblyDetails, headers, System.Console.Out);
+        }
+
         ///  <summary>
         ///
         ///  </summary>
@@ -31,22 +45,25 @@ namespace DNX.Helpers.Console
         /// <param name="writer"></param>
         public static void DisplayHeader(AssemblyDetails assemblyDetails, TextWriter writer)
         {
-            string s;
-
-            writer.Write("{0} v{1}", assemblyDetails.Title, assemblyDetails.Version);
-
-            s = assemblyDetails.Description;
-            if (!string.IsNullOrEmpty(s))
+            var headers = new[]
             {
-                writer.Write(" - {0}", s);
-            }
-            writer.WriteLine();
+                "{Name} v{Version} - {Description}",
+                "{Copyright}"
+            };
 
-            s = assemblyDetails.Copyright;
-            if (!string.IsNullOrEmpty(s))
-            {
-                writer.WriteLine(s);
-            }
+            DisplayHeader(assemblyDetails, headers, writer);
+        }
+
+        /// <summary>
+        /// Displays the header.
+        /// </summary>
+        /// <param name="assemblyDetails">The assembly details.</param>
+        /// <param name="headers">The headers.</param>
+        /// <param name="writer">The writer.</param>
+        public static void DisplayHeader(AssemblyDetails assemblyDetails, IList<string> headers, TextWriter writer)
+        {
+            headers.ToList()
+                .ForEach(h => writer.WriteLine(h.InterpolateWith(assemblyDetails)));
         }
 
         /// <summary>
@@ -56,6 +73,7 @@ namespace DNX.Helpers.Console
         {
             Display(null);
         }
+
         /// <summary>
         ///
         /// </summary>
