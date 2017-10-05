@@ -49,6 +49,8 @@
     <Compile Include="Exceptions\ReturnCodeException.cs" />
     <Compile Include="CommandLine\ParserHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Samples\Arguments.cs" />
+    <Compile Include="Samples\Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DNX.Helpers.Console.nuspec" />

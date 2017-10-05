@@ -14,7 +14,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Initial release</releaseNotes>
-    <copyright>Copyright 2016 DNX Solutions Ltd</copyright>
+    <copyright>Copyright 2017 DNX Solutions Ltd</copyright>
     <tags>DNX helpers extensions console commandline parser</tags>
   </metadata>
+  <files>
+    <file src="Samples/Program.cs" target="content" />
+    <file src="Samples/Arguments.cs" target="content" />
+  </files>
 </package>
