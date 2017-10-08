@@ -7,7 +7,13 @@ namespace DNX.Helpers.Console
     /// </summary>
     public enum ColorType
     {
+        /// <summary>
+        /// Refers to foreground colour
+        /// </summary>
         Foreground,
+        /// <summary>
+        /// Refers to background colour
+        /// </summary>
         Background
     }
 
@@ -17,28 +23,46 @@ namespace DNX.Helpers.Console
     /// <seealso cref="System.IDisposable" />
     public class ConsoleColourChanger : IDisposable
     {
-        private readonly ConsoleColor oldColour;
-        private readonly ColorType oldColourType;
+        private readonly ConsoleColor _oldColour;
+        private readonly ColorType _oldColourType;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConsoleColourChanger"/> class.
+        /// </summary>
+        /// <param name="newColour">The new colour.</param>
         public ConsoleColourChanger(ConsoleColor newColour)
             : this(newColour, ColorType.Foreground)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConsoleColourChanger"/> class.
+        /// </summary>
+        /// <param name="newColour">The new colour.</param>
+        /// <param name="type">The type.</param>
         public ConsoleColourChanger(ConsoleColor newColour, ColorType type)
         {
-            oldColourType = type;
-            oldColour = GetColour(oldColourType);
+            _oldColourType = type;
+            _oldColour = GetColour(_oldColourType);
 
-            SetColour(newColour, oldColourType);
+            SetColour(newColour, _oldColourType);
         }
 
         #region Static Methods
 
+        /// <summary>
+        /// Gets the colour.
+        /// </summary>
+        /// <returns>ConsoleColor.</returns>
         public static ConsoleColor GetColour()
         {
             return GetColour(ColorType.Foreground);
         }
+        /// <summary>
+        /// Gets the colour.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>ConsoleColor.</returns>
         public static ConsoleColor GetColour(ColorType type)
         {
             switch (type)
@@ -52,10 +76,19 @@ namespace DNX.Helpers.Console
             }
         }
 
+        /// <summary>
+        /// Sets the colour.
+        /// </summary>
+        /// <param name="colour">The colour.</param>
         public static void SetColour(ConsoleColor colour)
         {
             SetColour(colour, ColorType.Foreground);
         }
+        /// <summary>
+        /// Sets the colour.
+        /// </summary>
+        /// <param name="colour">The colour.</param>
+        /// <param name="type">The type.</param>
         public static void SetColour(ConsoleColor colour, ColorType type)
         {
             switch (type)
@@ -74,9 +107,12 @@ namespace DNX.Helpers.Console
 
         #region IDisposable Members
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
-            SetColour(oldColour, oldColourType);
+            SetColour(_oldColour, _oldColourType);
         }
 
         #endregion

@@ -16,6 +16,14 @@ namespace DNX.Helpers.Console.CommandLine
             return Parse<T>(args, settings);
         }
 
+        /// <summary>
+        /// Parses the specified arguments.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="args">The arguments.</param>
+        /// <param name="settings">The settings.</param>
+        /// <returns>ParserResult&lt;T&gt;.</returns>
+        /// <exception cref="ParserResultException{T}"></exception>
         public static ParserResult<T> Parse<T>(string[] args, ParserSettings settings)
             where T : new()
         {
@@ -41,6 +49,12 @@ namespace DNX.Helpers.Console.CommandLine
             target.EnableDashDash         = source.EnableDashDash;
         }
 
+        /// <summary>
+        /// Builds the help text using default automatic settings
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="result">The result.</param>
+        /// <returns>HelpText.</returns>
         public static HelpText BuildHelp<T>(ParserResult<T> result)
         {
             var helpText = HelpText.AutoBuild(result);

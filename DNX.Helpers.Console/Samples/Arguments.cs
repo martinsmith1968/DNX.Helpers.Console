@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+#pragma warning disable 1591
 
 namespace SampleApp
 {
