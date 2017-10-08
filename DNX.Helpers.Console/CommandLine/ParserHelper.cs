@@ -6,8 +6,17 @@ using DNX.CommandLine.Helpers.Exceptions;
 
 namespace DNX.Helpers.Console.CommandLine
 {
+    /// <summary>
+    /// Class ParserHelper.
+    /// </summary>
     public static class ParserHelper
     {
+        /// <summary>
+        /// Parses the specified arguments using default Parser settings
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="args">The arguments.</param>
+        /// <returns>ParserResult&lt;T&gt;.</returns>
         public static ParserResult<T> Parse<T>(string[] args)
             where T : new()
         {
