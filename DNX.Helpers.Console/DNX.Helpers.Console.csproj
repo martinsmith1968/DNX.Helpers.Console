@@ -31,23 +31,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommandLine, Version=2.0.0.0, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommandLineParser20.2.0.0.0\lib\net40\CommandLine.dll</HintPath>
+    <Reference Include="CommandLine, Version=2.0.275.0, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommandLineParser.2.1.1-beta\lib\net45\CommandLine.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DNX.Helpers, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DNX.Helpers.1.0.7\lib\net452\DNX.Helpers.dll</HintPath>
+    <Reference Include="DNX.Helpers, Version=1.0.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DNX.Helpers.1.0.11\lib\net452\DNX.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandLine\HelpBuilder.cs" />
+    <Compile Include="CommandLine\ParserResultExtensions.cs" />
     <Compile Include="ConsoleColourChanger.cs" />
     <Compile Include="ConsoleHelper.cs" />
-    <Compile Include="Exceptions\ParserResultException.cs" />
     <Compile Include="Exceptions\ReturnCodeException.cs" />
     <Compile Include="CommandLine\ParserHelper.cs" />
+    <Compile Include="Interfaces\ISettingsValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Samples\Arguments.cs" />
     <Compile Include="Samples\Program.cs" />

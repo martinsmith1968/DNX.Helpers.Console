@@ -7,6 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DNX.Helpers.Console", "DNX.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.DNX.Helpers.Console", "Test.DNX.Helpers.Console\Test.DNX.Helpers.Console.csproj", "{CDEBA8FB-07FB-4E91-8F53-59292A3E59DE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{0AB03902-3270-434A-A23A-1050643E2B79}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commands", "Commands", "{6A59AA5C-37A8-457E-9C66-A2CFDB762BBA}"
+	ProjectSection(SolutionItems) = preProject
+		GenerateMarkdown.cmd = GenerateMarkdown.cmd
+		NuGet.Package.cmd = NuGet.Package.cmd
+		NuGet.publish.cmd = NuGet.publish.cmd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +33,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6A59AA5C-37A8-457E-9C66-A2CFDB762BBA} = {0AB03902-3270-434A-A23A-1050643E2B79}
 	EndGlobalSection
 EndGlobal

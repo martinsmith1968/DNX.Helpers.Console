@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>$version$</version>
+    <version>$version$-beta</version>
     <title>$title$</title>
     <authors>Martin Smith</authors>
     <owners>DNX Solutions Ltd</owners>
@@ -16,6 +16,9 @@
     <releaseNotes>Initial release</releaseNotes>
     <copyright>Copyright 2017 DNX Solutions Ltd</copyright>
     <tags>DNX helpers extensions console commandline parser</tags>
+    <dependencies>
+      <dependency id="CommandLineParser" version="2.1.1-beta" />
+    </dependencies>
   </metadata>
   <files>
     <file src="Samples/Program.cs" target="content" />

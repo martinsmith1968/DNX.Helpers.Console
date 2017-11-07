@@ -1,4 +1,5 @@
 ﻿using System;
+using CommandLine;
 using DNX.CommandLine.Helpers.Exceptions;
 using DNX.Helpers.Assemblies;
 using DNX.Helpers.Console;
@@ -20,18 +21,21 @@ namespace SampleApp
         {
             try
             {
-                var arguments = ParserHelper.Parse<Arguments>(args);
+                var result = Parser.Default.Parse<Arguments>(args)
+                    .WithParsed(Run);
 
-                Run(arguments.Value);
+                //var result = Parser.Default.Parse<CommandA, CommandB, CommandC, CommandD>(
+                //    args,
+                //    )
+                //    .WithParsed<CommandA>(a => RunA(a))
+                //    .WithParsed<CommandB>(a => RunB(a))
+                //    .WithParsed<CommandC>(a => RunC(a))
+                //    .WithParsed<CommandD>(a => RunD(a))
+                //    ;
 
-                return 0;
-            }
-            catch (ParserResultException<Arguments> ex)
-            {
-                var helpText = ParserHelper.BuildHelp(ex.Result);
-                Console.Error.WriteLine(helpText);
-
-                return 1;
+                return result.Ok()
+                    ? 0
+                    : 1;
             }
             catch (ReturnCodeException ex)
             {

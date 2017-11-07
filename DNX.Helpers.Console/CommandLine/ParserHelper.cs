@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
+using System.IO;
 using CommandLine;
-using CommandLine.Text;
-using DNX.CommandLine.Helpers.Exceptions;
+using DNX.Helpers.Console.Interfaces;
+using DNX.Helpers.Strings;
 
 namespace DNX.Helpers.Console.CommandLine
 {
@@ -12,63 +13,93 @@ namespace DNX.Helpers.Console.CommandLine
     public static class ParserHelper
     {
         /// <summary>
-        /// Parses the specified arguments using default Parser settings
+        /// Gets the default parser.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="args">The arguments.</param>
-        /// <returns>ParserResult&lt;T&gt;.</returns>
-        public static ParserResult<T> Parse<T>(string[] args)
-            where T : new()
+        /// <value>The default parser.</value>
+        public static Parser DefaultParser
         {
-            var settings = new ParserSettings();
-
-            return Parse<T>(args, settings);
+            get
+            {
+                return new Parser(DefaultParserConfiguration);
+            }
         }
+
+        /// <summary>
+        /// The default parser configuration
+        /// </summary>
+        public static Action<ParserSettings> DefaultParserConfiguration = settings =>
+        {
+            settings.IgnoreUnknownArguments    = false;
+            settings.CaseInsensitiveEnumValues = true;
+
+            if (!System.Console.IsOutputRedirected)
+            {
+                settings.MaximumDisplayWidth       = System.Console.WindowWidth;
+            }
+        };
 
         /// <summary>
         /// Parses the specified arguments.
         /// </summary>
         /// <typeparam name="T"></typeparam>
+        /// <param name="parser">The parser.</param>
         /// <param name="args">The arguments.</param>
-        /// <param name="settings">The settings.</param>
         /// <returns>ParserResult&lt;T&gt;.</returns>
-        /// <exception cref="ParserResultException{T}"></exception>
-        public static ParserResult<T> Parse<T>(string[] args, ParserSettings settings)
+        public static ParserResult<T> Parse<T>(this Parser parser, string[] args)
             where T : new()
         {
-            using (var parser = new Parser(x => ApplySettings(x, settings)))
+            var expandedArgs = ExpandArgs(args);
+
+            var result = parser.ParseArguments<T>(expandedArgs);
+            if (result.Ok())
             {
-                var result = parser.ParseArguments<T>(args);
-
-                if (result.Errors.Any())
-                {
-                    throw new ParserResultException<T>(result, string.Join(Environment.NewLine, result.Errors));
-                }
-
-                return result;
+                ValidateInstance(result);
             }
-        }
 
-        private static void ApplySettings(ParserSettings target, ParserSettings source)
-        {
-            target.CaseSensitive          = source.CaseSensitive;
-            target.ParsingCulture         = source.ParsingCulture;
-            target.HelpWriter             = source.HelpWriter;
-            target.IgnoreUnknownArguments = source.IgnoreUnknownArguments;
-            target.EnableDashDash         = source.EnableDashDash;
+            return result;
         }
 
         /// <summary>
-        /// Builds the help text using default automatic settings
+        /// Custom validation on the arguments options instance
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="result">The result.</param>
-        /// <returns>HelpText.</returns>
-        public static HelpText BuildHelp<T>(ParserResult<T> result)
+        /// <param name="result"></param>
+        private static void ValidateInstance<T>(ParserResult<T> result)
+            where T : new()
         {
-            var helpText = HelpText.AutoBuild(result);
+            var validator = result.Result().Value as ISettingsValidator;
+            if (validator != null)
+            {
+                validator.Validate();
+            }
+        }
 
-            return helpText;
+        /// <summary>
+        /// Expands the arguments.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        /// <returns>IEnumerable&lt;System.String&gt;.</returns>
+        public static IEnumerable<string> ExpandArgs(IEnumerable<string> args)
+        {
+            var expandedArgs = new List<string>();
+
+            foreach (var arg in args)
+            {
+                if (arg.StartsWith("@"))
+                {
+                    var fileInfo = new FileInfo(arg.RemoveStartsWith("@"));
+                    if (fileInfo.Exists)
+                    {
+                        expandedArgs.AddRange(File.ReadAllLines(fileInfo.FullName));
+                    }
+                }
+                else
+                {
+                    expandedArgs.Add(arg);
+                }
+            }
+
+            return expandedArgs;
         }
     }
 }
