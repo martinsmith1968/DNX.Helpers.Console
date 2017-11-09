@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using CommandLine;
 using DNX.Helpers.Console.Interfaces;
-using DNX.Helpers.Strings;
 
 namespace DNX.Helpers.Console.CommandLine
 {
@@ -34,72 +31,62 @@ namespace DNX.Helpers.Console.CommandLine
 
             if (!System.Console.IsOutputRedirected)
             {
-                settings.MaximumDisplayWidth       = System.Console.WindowWidth;
+                settings.MaximumDisplayWidth = System.Console.WindowWidth;
             }
         };
 
         /// <summary>
-        /// Parses the specified arguments.
+        /// Gets the parser.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="parser">The parser.</param>
+        /// <returns>Parser.</returns>
+        public static Parser GetParser<T>()
+            where T : new()
+        {
+            return GetParser<T>(DefaultParser);
+        }
+
+        /// <summary>
+        /// Gets the parser.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns>Parser.</returns>
+        public static Parser GetParser<T>(Parser defaultParser)
+            where T : new()
+        {
+            var configurator = new T() as IParserSettingsConfigurator;
+
+            return (configurator != null)
+                ? new Parser(configurator.SettingsConfigurator)
+                : defaultParser;
+        }
+
+
+        /// <summary>
+        /// Gets the parser and parse.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="args">The arguments.</param>
+        /// <returns>CommandLine.ParserResult&lt;T&gt;.</returns>
+        public static ParserResult<T> GetParserAndParse<T>(string[] args)
+            where T : new()
+        {
+            return GetParserAndParse<T>(args, DefaultParser);
+        }
+
+        /// <summary>
+        /// Gets the parser and parse.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="args">The arguments.</param>
+        /// <param name="defaultParser">The default parser.</param>
         /// <returns>ParserResult&lt;T&gt;.</returns>
-        public static ParserResult<T> Parse<T>(this Parser parser, string[] args)
+        public static ParserResult<T> GetParserAndParse<T>(string[] args, Parser defaultParser)
             where T : new()
         {
-            var expandedArgs = ExpandArgs(args);
+            var parser = GetParser<T>(defaultParser);
 
-            var result = parser.ParseArguments<T>(expandedArgs);
-            if (result.Ok())
-            {
-                ValidateInstance(result);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Custom validation on the arguments options instance
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="result"></param>
-        private static void ValidateInstance<T>(ParserResult<T> result)
-            where T : new()
-        {
-            var validator = result.Result().Value as ISettingsValidator;
-            if (validator != null)
-            {
-                validator.Validate();
-            }
-        }
-
-        /// <summary>
-        /// Expands the arguments.
-        /// </summary>
-        /// <param name="args">The arguments.</param>
-        /// <returns>IEnumerable&lt;System.String&gt;.</returns>
-        public static IEnumerable<string> ExpandArgs(IEnumerable<string> args)
-        {
-            var expandedArgs = new List<string>();
-
-            foreach (var arg in args)
-            {
-                if (arg.StartsWith("@"))
-                {
-                    var fileInfo = new FileInfo(arg.RemoveStartsWith("@"));
-                    if (fileInfo.Exists)
-                    {
-                        expandedArgs.AddRange(File.ReadAllLines(fileInfo.FullName));
-                    }
-                }
-                else
-                {
-                    expandedArgs.Add(arg);
-                }
-            }
-
-            return expandedArgs;
+            return parser.ParseAndValidate<T>(args);
         }
     }
 }

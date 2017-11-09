@@ -1,13 +1,19 @@
 ﻿using System;
 
-namespace DNX.CommandLine.Helpers.Exceptions
+namespace DNX.Helpers.Console.Exceptions
 {
+    /// <inheritdoc />
     /// <summary>
     /// Class ReturnCodeException.
     /// </summary>
-    /// <seealso cref="System.Exception" />
+    /// <seealso cref="T:System.Exception" />
     public class ReturnCodeException : Exception
     {
+        /// <summary>
+        /// The maximum return code
+        /// </summary>
+        public const int MaximumReturnCode = 99999;
+
         /// <summary>
         /// Gets the return code.
         /// </summary>

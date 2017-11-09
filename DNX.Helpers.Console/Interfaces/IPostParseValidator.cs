@@ -3,7 +3,7 @@
     /// <summary>
     /// Interface ISettingsValidator
     /// </summary>
-    public interface ISettingsValidator
+    public interface IPostParseValidator
     {
         /// <summary>
         /// Validates this instance.

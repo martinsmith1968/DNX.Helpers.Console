@@ -1,9 +1,9 @@
 ﻿using System;
 using CommandLine;
-using DNX.CommandLine.Helpers.Exceptions;
 using DNX.Helpers.Assemblies;
 using DNX.Helpers.Console;
 using DNX.Helpers.Console.CommandLine;
+using DNX.Helpers.Console.Exceptions;
 
 namespace SampleApp
 {
@@ -21,21 +21,30 @@ namespace SampleApp
         {
             try
             {
-                var result = Parser.Default.Parse<Arguments>(args)
+                var result = ParserHelper.GetParserAndParse<Arguments>(args)
                     .WithParsed(Run);
 
-                //var result = Parser.Default.Parse<CommandA, CommandB, CommandC, CommandD>(
-                //    args,
-                //    )
-                //    .WithParsed<CommandA>(a => RunA(a))
-                //    .WithParsed<CommandB>(a => RunB(a))
-                //    .WithParsed<CommandC>(a => RunC(a))
-                //    .WithParsed<CommandD>(a => RunD(a))
-                //    ;
+                var result2 = ParserHelper.DefaultParser.ParseArguments<CommandA, CommandB, CommandC, CommandD>(args)
+                    .WithParsed<CommandA>(a => a.Run())
+                    .WithParsed<CommandB>(b => b.Run())
+                    .WithParsed<CommandC>(c => c.Run())
+                    .WithParsed<CommandD>(d => d.Run())
+                    ;
 
-                return result.Ok()
-                    ? 0
-                    : 1;
+                return result.Ok() ? 0 : 1;
+            }
+            catch (ParserResultException<Arguments> ex)
+            {
+                return 1;
+            }
+            catch (ParserResultException ex)
+            {
+                var failureA = ex.GetFailureResultAs<CommandA>();
+                var failureB = ex.GetFailureResultAs<CommandB>();
+                var failureC = ex.GetFailureResultAs<CommandC>();
+                var failureD = ex.GetFailureResultAs<CommandD>();
+
+                return 1;
             }
             catch (ReturnCodeException ex)
             {
@@ -47,7 +56,7 @@ namespace SampleApp
             {
                 Console.WriteLine(ex);
 
-                return int.MaxValue;
+                return ReturnCodeException.MaximumReturnCode;
             }
         }
 

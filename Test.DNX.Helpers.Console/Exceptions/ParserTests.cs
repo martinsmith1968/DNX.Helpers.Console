@@ -23,7 +23,7 @@ namespace Test.DNX.Helpers.Console.Exceptions
             var args = new string[] {};
 
             // Act
-            var result = ParserHelper.DefaultParser.Parse<Args>(args);
+            var result = ParserHelper.DefaultParser.ParseAndValidate<Args>(args);
 
             // Assert
             Assert.IsNotNull(result);
@@ -37,7 +37,7 @@ namespace Test.DNX.Helpers.Console.Exceptions
             var args = "bob.txt".Split(' ');
 
             // Act
-            var result = ParserHelper.DefaultParser.Parse<Args>(args);
+            var result = ParserHelper.DefaultParser.ParseAndValidate<Args>(args);
 
             // Assert
             Assert.IsNotNull(result);
@@ -53,7 +53,7 @@ namespace Test.DNX.Helpers.Console.Exceptions
             var args = "bob.txt -f".Split(' ');
 
             // Act
-            var result = ParserHelper.DefaultParser.Parse<Args>(args);
+            var result = ParserHelper.DefaultParser.ParseAndValidate<Args>(args);
 
             // Assert
             Assert.IsNotNull(result);
