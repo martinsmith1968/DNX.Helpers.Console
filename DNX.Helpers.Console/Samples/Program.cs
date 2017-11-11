@@ -33,7 +33,7 @@ namespace SampleApp
 
                 return result.Ok() ? 0 : 1;
             }
-            catch (ParserResultException<Arguments> ex)
+            catch (ParserResultException<Arguments>)
             {
                 return 1;
             }
