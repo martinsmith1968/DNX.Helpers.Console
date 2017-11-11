@@ -2,43 +2,6 @@
 # DNX.Helpers.Console
 
 
-## T:DNX.CommandLine.Helpers.Exceptions.ReturnCodeException
-
-Class ReturnCodeException.
-
-
-### M:DNX.CommandLine.Helpers.Exceptions.ReturnCodeException.#ctor(returnCode)
-
-Initializes a new instance of the class.
-
-| Name | Description |
-| ---- | ----------- |
-| returnCode | *System.Int32*<br>The return code. |
-
-### M:DNX.CommandLine.Helpers.Exceptions.ReturnCodeException.#ctor(returnCode, message)
-
-Initializes a new instance of the class.
-
-| Name | Description |
-| ---- | ----------- |
-| returnCode | *System.Int32*<br>The return code. |
-| message | *System.String*<br>The message. |
-
-### M:DNX.CommandLine.Helpers.Exceptions.ReturnCodeException.#ctor(returnCode, message, innerException)
-
-Initializes a new instance of the class.
-
-| Name | Description |
-| ---- | ----------- |
-| returnCode | *System.Int32*<br>The return code. |
-| message | *System.String*<br>The message. |
-| innerException | *System.Exception*<br>The inner exception. |
-
-### P:DNX.CommandLine.Helpers.Exceptions.ReturnCodeException.ReturnCode
-
-Gets the return code.
-
-
 ## ColorType
 
 
@@ -52,6 +15,25 @@ Refers to background colour
 ### F:DNX.Helpers.Console.Foreground
 
 Refers to foreground colour
+
+
+## CommandLine.ArgumentExtensions
+
+Class ArgumentExtensions.
+
+
+### M:DNX.Helpers.Console.Expand(args)
+
+Expands the arguments.
+
+| Name | Description |
+| ---- | ----------- |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+
+
+#### Returns
+
+IEnumerable<System.String>.
 
 
 ## CommandLine.HelpBuilder
@@ -75,43 +57,34 @@ Gets the help text.
 System.String.
 
 
-## CommandLine.ParserHelper
+## CommandLine.ParserExtendedSettings
 
-Class ParserHelper.
-
-
-### .DefaultParser
-
-Gets the default parser.
+Class ParserExtendedSettings.
 
 
-### F:DNX.Helpers.Console.DefaultParserConfiguration
+### M:DNX.Helpers.Console.Reset
 
-The default parser configuration
-
-
-### M:DNX.Helpers.Console.ExpandArgs(args)
-
-Expands the arguments.
-
-| Name | Description |
-| ---- | ----------- |
-| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+Resets the settings.
 
 
-#### Returns
+### .ThrowOnParseFailure
 
-IEnumerable<System.String>.
+Gets or sets a value indicating whether the Parser should throw an Exception if parsing fails
 
 
-### M:DNX.Helpers.Console.Parse``1(parser, args)
+## CommandLine.ParserExtensions
+
+Class ParserVerbExtensions.
+
+
+### M:DNX.Helpers.Console.ParseAndValidate``1(parser, args)
 
 Parses the specified arguments.
 
 | Name | Description |
 | ---- | ----------- |
 | parser | *CommandLine.Parser*<br>The parser. |
-| args | *System.String[]*<br>The arguments. |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
 
 
 #### Returns
@@ -119,13 +92,489 @@ Parses the specified arguments.
 ParserResult<T>.
 
 
-### M:DNX.Helpers.Console.ValidateInstance``1(result)
+### M:DNX.Helpers.Console.ParseAndValidate``10(parser, args)
 
-Custom validation on the arguments options instance
+Parses the specified Command arguments.
 
 | Name | Description |
 | ---- | ----------- |
-| result | *CommandLine.ParserResult{``0}*<br> |
+| parser | *CommandLine.Parser*<br>The parser. |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.ParseAndValidate``11(parser, args)
+
+Parses the specified Command arguments.
+
+| Name | Description |
+| ---- | ----------- |
+| parser | *CommandLine.Parser*<br>The parser. |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.ParseAndValidate``12(parser, args)
+
+Parses the specified Command arguments.
+
+| Name | Description |
+| ---- | ----------- |
+| parser | *CommandLine.Parser*<br>The parser. |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.ParseAndValidate``13(parser, args)
+
+Parses the specified Command arguments.
+
+| Name | Description |
+| ---- | ----------- |
+| parser | *CommandLine.Parser*<br>The parser. |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.ParseAndValidate``14(parser, args)
+
+Parses the specified Command arguments.
+
+| Name | Description |
+| ---- | ----------- |
+| parser | *CommandLine.Parser*<br>The parser. |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.ParseAndValidate``15(parser, args)
+
+Parses the specified Command arguments.
+
+| Name | Description |
+| ---- | ----------- |
+| parser | *CommandLine.Parser*<br>The parser. |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.ParseAndValidate``16(parser, args)
+
+Parses the specified Command arguments.
+
+| Name | Description |
+| ---- | ----------- |
+| parser | *CommandLine.Parser*<br>The parser. |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.ParseAndValidate``2(parser, args)
+
+Parses the specified Command arguments.
+
+| Name | Description |
+| ---- | ----------- |
+| parser | *CommandLine.Parser*<br>The parser. |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.ParseAndValidate``3(parser, args)
+
+Parses the specified Command arguments.
+
+| Name | Description |
+| ---- | ----------- |
+| parser | *CommandLine.Parser*<br>The parser. |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.ParseAndValidate``4(parser, args)
+
+Parses the specified Command arguments.
+
+| Name | Description |
+| ---- | ----------- |
+| parser | *CommandLine.Parser*<br>The parser. |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.ParseAndValidate``5(parser, args)
+
+Parses the specified Command arguments.
+
+| Name | Description |
+| ---- | ----------- |
+| parser | *CommandLine.Parser*<br>The parser. |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.ParseAndValidate``6(parser, args)
+
+Parses the specified Command arguments.
+
+| Name | Description |
+| ---- | ----------- |
+| parser | *CommandLine.Parser*<br>The parser. |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.ParseAndValidate``7(parser, args)
+
+Parses the specified Command arguments.
+
+| Name | Description |
+| ---- | ----------- |
+| parser | *CommandLine.Parser*<br>The parser. |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.ParseAndValidate``8(parser, args)
+
+Parses the specified Command arguments.
+
+| Name | Description |
+| ---- | ----------- |
+| parser | *CommandLine.Parser*<br>The parser. |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.ParseAndValidate``9(parser, args)
+
+Parses the specified Command arguments.
+
+| Name | Description |
+| ---- | ----------- |
+| parser | *CommandLine.Parser*<br>The parser. |
+| args | *System.Collections.Generic.IEnumerable{System.String}*<br>The arguments. |
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+## CommandLine.ParserHelper
+
+Class ParserManager.
+
+
+### .DefaultParser
+
+Gets the default parser.
+
+
+### M:DNX.Helpers.Console.GetParser``1
+
+Gets a parser for the specified Arguments type
+
+
+#### Returns
+
+Parser.
+
+
+### M:DNX.Helpers.Console.GetParser``10
+
+Gets a parser for the specified Command types
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.GetParser``11
+
+Gets a parser for the specified Command types
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.GetParser``12
+
+Gets a parser for the specified Command types
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.GetParser``13
+
+Gets a parser for the specified Command types
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.GetParser``14
+
+Gets a parser for the specified Command types
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.GetParser``15
+
+Gets a parser for the specified Command types
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.GetParser``16
+
+Gets a parser for the specified Command types
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.GetParser``2
+
+Gets a parser for the specified Command types
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.GetParser``3
+
+Gets a parser for the specified Command types
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.GetParser``4
+
+Gets a parser for the specified Command types
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.GetParser``5
+
+Gets a parser for the specified Command types
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.GetParser``6
+
+Gets a parser for the specified Command types
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.GetParser``7
+
+Gets a parser for the specified Command types
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.GetParser``8
+
+Gets a parser for the specified Command types
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.GetParser``9
+
+Gets a parser for the specified Command types
+
+
+#### Returns
+
+CommandLine.ParserResult<System.Object>.
+
+
+### M:DNX.Helpers.Console.GetParserAndParse``1(args)
+
+Gets a parser for the specified Arguments type and parses
+
+| Name | Description |
+| ---- | ----------- |
+| args | *System.String[]*<br>The arguments. |
+
+
+#### Returns
+
+CommandLine.ParserResult<T>.
+
+
+### M:DNX.Helpers.Console.GetParserAndParse``10(System.String[])
+
+Gets a parser for the specified Command types and parses
+
+
+### M:DNX.Helpers.Console.GetParserAndParse``11(System.String[])
+
+Gets a parser for the specified Command types and parses
+
+
+### M:DNX.Helpers.Console.GetParserAndParse``12(System.String[])
+
+Gets a parser for the specified Command types and parses
+
+
+### M:DNX.Helpers.Console.GetParserAndParse``13(System.String[])
+
+Gets a parser for the specified Command types and parses
+
+
+### M:DNX.Helpers.Console.GetParserAndParse``14(System.String[])
+
+Gets a parser for the specified Command types and parses
+
+
+### M:DNX.Helpers.Console.GetParserAndParse``15(System.String[])
+
+Gets a parser for the specified Command types and parses
+
+
+### M:DNX.Helpers.Console.GetParserAndParse``16(System.String[])
+
+Gets a parser for the specified Command types and parses
+
+
+### M:DNX.Helpers.Console.GetParserAndParse``2(System.String[])
+
+Gets a parser for the specified Command types and parses
+
+
+### M:DNX.Helpers.Console.GetParserAndParse``3(System.String[])
+
+Gets a parser for the specified Command types and parses
+
+
+### M:DNX.Helpers.Console.GetParserAndParse``4(System.String[])
+
+Gets a parser for the specified Command types and parses
+
+
+### M:DNX.Helpers.Console.GetParserAndParse``5(System.String[])
+
+Gets a parser for the specified Command types and parses
+
+
+### M:DNX.Helpers.Console.GetParserAndParse``6(System.String[])
+
+Gets a parser for the specified Command types and parses
+
+
+### M:DNX.Helpers.Console.GetParserAndParse``7(System.String[])
+
+Gets a parser for the specified Command types and parses
+
+
+### M:DNX.Helpers.Console.GetParserAndParse``8(System.String[])
+
+Gets a parser for the specified Command types and parses
+
+
+### M:DNX.Helpers.Console.GetParserAndParse``9(System.String[])
+
+Gets a parser for the specified Command types and parses
+
 
 ## CommandLine.ParserResultExtensions
 
@@ -188,6 +637,22 @@ Oks the specified result.
 true if XXXX, false otherwise.
 
 
+### M:DNX.Helpers.Console.PostProcessResult``1(result)
+
+Post processes the result.
+
+| Name | Description |
+| ---- | ----------- |
+| result | *CommandLine.ParserResult{``0}*<br>The result. |
+
+
+#### Returns
+
+ParserResult<T>.
+
+*Exceptions.ParserResultException`1:* 
+
+
 ### M:DNX.Helpers.Console.Result``1(result)
 
 Results the specified result.
@@ -200,6 +665,99 @@ Results the specified result.
 #### Returns
 
 Parsed<T>.
+
+
+### M:DNX.Helpers.Console.ValidateInstance``1(result)
+
+Custom validation on a parsed arguments instance
+
+| Name | Description |
+| ---- | ----------- |
+| result | *CommandLine.Parsed{``0}*<br> |
+
+## CommandLine.ParserSettingsChain
+
+Class ParserSettingsChain.
+
+
+### M:DNX.Helpers.Console.Create(chain)
+
+Creates the specified chain.
+
+| Name | Description |
+| ---- | ----------- |
+| chain | *System.Action{CommandLine.ParserSettings}[]*<br>The chain. |
+
+
+#### Returns
+
+Action<ParserSettings>.
+
+
+### M:DNX.Helpers.Console.Create(chain)
+
+Creates the specified chain.
+
+| Name | Description |
+| ---- | ----------- |
+| chain | *System.Collections.Generic.IList{System.Action{CommandLine.ParserSettings}}*<br>The chain. |
+
+
+#### Returns
+
+Action<ParserSettings>.
+
+
+## CommandLine.ParserSettingsExtensions
+
+Class ParserSettingsExtensions.
+
+
+### M:DNX.Helpers.Console.Reset(settings)
+
+Resets the specified settings.
+
+| Name | Description |
+| ---- | ----------- |
+| settings | *CommandLine.ParserSettings*<br>The settings. |
+
+### M:DNX.Helpers.Console.ShouldThrowOnParseFailure(settings, value)
+
+Set whether the Parser throws an Exception or not during Parse Failure
+
+| Name | Description |
+| ---- | ----------- |
+| settings | *CommandLine.ParserSettings*<br>The settings. |
+| value | *System.Boolean*<br>if set to true [value]. |
+
+## CommandLine.ParserSettingsHelper
+
+Class ParserSettingsCustomiserHelper.
+
+
+### M:DNX.Helpers.Console.CanCustomiseSettings``1
+
+Determines whether this instance can customise the settings for the specified parser.
+
+
+#### Returns
+
+true if this instance can customise the settings for the specified parser; otherwise, false.
+
+
+### F:DNX.Helpers.Console.DefaultParserCustomiser
+
+The default parser customiser
+
+
+### M:DNX.Helpers.Console.GetSettingsCustomiser``1
+
+Gets the settings customiser.
+
+
+#### Returns
+
+Action<ParserSettings>.
 
 
 ## ConsoleColourChanger
@@ -416,7 +974,148 @@ The left
 The right
 
 
-## Interfaces.ISettingsValidator
+## Exceptions.ParserResultException
+
+Class ParserResultException.
+
+
+### M:DNX.Helpers.Console.#ctor(failureResult)
+
+Initializes a new instance of the class.
+
+| Name | Description |
+| ---- | ----------- |
+| failureResult | *System.Object*<br>The failure result. |
+
+### M:DNX.Helpers.Console.#ctor(failureResult, message)
+
+Initializes a new instance of the class.
+
+| Name | Description |
+| ---- | ----------- |
+| failureResult | *System.Object*<br>The failure result. |
+| message | *System.String*<br>The message. |
+
+### M:DNX.Helpers.Console.#ctor(failureResult, message, innerException)
+
+Initializes a new instance of the class.
+
+| Name | Description |
+| ---- | ----------- |
+| failureResult | *System.Object*<br>The failure result. |
+| message | *System.String*<br>The message. |
+| innerException | *System.Exception*<br>The inner exception. |
+
+
+### .FailureResult
+
+Gets the failure result.
+
+
+### M:DNX.Helpers.Console.GetFailureResultAs``1
+
+Gets the failure result as.
+
+
+#### Returns
+
+T.
+
+
+## Exceptions.ParserResultException`1
+
+Class ParserResultException.
+
+
+### M:DNX.Helpers.Console.#ctor(failureResult)
+
+Initializes a new instance of the class.
+
+| Name | Description |
+| ---- | ----------- |
+| failureResult | *CommandLine.NotParsed{`0}*<br>The failure result. |
+
+### M:DNX.Helpers.Console.#ctor(failureResult, message)
+
+Initializes a new instance of the class.
+
+| Name | Description |
+| ---- | ----------- |
+| failureResult | *CommandLine.NotParsed{`0}*<br>The failure result. |
+| message | *System.String*<br>The message. |
+
+### M:DNX.Helpers.Console.#ctor(failureResult, message, innerException)
+
+Initializes a new instance of the class.
+
+| Name | Description |
+| ---- | ----------- |
+| failureResult | *CommandLine.NotParsed{`0}*<br>The failure result. |
+| message | *System.String*<br>The message. |
+| innerException | *System.Exception*<br>The inner exception. |
+
+
+### .FailureResult
+
+Gets the failure result.
+
+
+## Exceptions.ReturnCodeException
+
+Class ReturnCodeException.
+
+
+### M:DNX.Helpers.Console.#ctor(returnCode)
+
+Initializes a new instance of the class.
+
+| Name | Description |
+| ---- | ----------- |
+| returnCode | *System.Int32*<br>The return code. |
+
+### M:DNX.Helpers.Console.#ctor(returnCode, message)
+
+Initializes a new instance of the class.
+
+| Name | Description |
+| ---- | ----------- |
+| returnCode | *System.Int32*<br>The return code. |
+| message | *System.String*<br>The message. |
+
+### M:DNX.Helpers.Console.#ctor(returnCode, message, innerException)
+
+Initializes a new instance of the class.
+
+| Name | Description |
+| ---- | ----------- |
+| returnCode | *System.Int32*<br>The return code. |
+| message | *System.String*<br>The message. |
+| innerException | *System.Exception*<br>The inner exception. |
+
+### F:DNX.Helpers.Console.MaximumReturnCode
+
+The maximum return code
+
+
+### .ReturnCode
+
+Gets the return code.
+
+
+## Interfaces.IParserSettingsCustomiser
+
+Interface IParserSettingsConfigurator
+
+
+### M:DNX.Helpers.Console.CustomiseSettings(settings)
+
+Configures the Parser Settings
+
+| Name | Description |
+| ---- | ----------- |
+| settings | *CommandLine.ParserSettings*<br>The settings. |
+
+## Interfaces.IPostParseValidator
 
 Interface ISettingsValidator
 
