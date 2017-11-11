@@ -5,7 +5,7 @@ using DNX.Helpers.Console;
 using DNX.Helpers.Console.CommandLine;
 using DNX.Helpers.Console.Exceptions;
 
-namespace SampleApp
+namespace CommandLineTester
 {
     /// <summary>
     /// Program controller class
@@ -68,8 +68,8 @@ namespace SampleApp
         {
             var assemblyDetails = new AssemblyDetails();
 
-            ConsoleHelper.DisplayHeader(assemblyDetails);
-            ConsoleHelper.Display();
+            //ConsoleHelper.DisplayHeader(assemblyDetails);
+            //ConsoleHelper.Display();
 
             // TODO: Functionality here
         }

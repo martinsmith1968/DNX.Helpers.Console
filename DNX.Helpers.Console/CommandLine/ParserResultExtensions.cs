@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CommandLine;
+using DNX.Helpers.Console.Exceptions;
+using DNX.Helpers.Console.Interfaces;
 
 namespace DNX.Helpers.Console.CommandLine
 {
@@ -70,6 +72,42 @@ namespace DNX.Helpers.Console.CommandLine
             return errorResult == null
                 ? Enumerable.Empty<Error>()
                 : errorResult.Errors;
+        }
+
+        /// <summary>
+        /// Custom validation on a parsed arguments instance
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="result"></param>
+        public static void ValidateInstance<T>(this Parsed<T> result)
+            where T : new()
+        {
+            var validator = result.Value as IPostParseValidator;
+            if (validator != null)
+            {
+                validator.Validate();
+            }
+        }
+
+        /// <summary>
+        /// Post processes the result.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="result">The result.</param>
+        /// <returns>ParserResult&lt;T&gt;.</returns>
+        /// <exception cref="ParserResultException{T}"></exception>
+        internal static void PostProcessResult<T>(this ParserResult<T> result)
+            where T : new()
+        {
+            if (ParserExtendedSettings.ThrowOnParseFailure && !result.Ok())
+            {
+                throw new ParserResultException<T>(result.ErrorResult());
+            }
+
+            if (result.Ok())
+            {
+                ValidateInstance(result.Result());
+            }
         }
     }
 }

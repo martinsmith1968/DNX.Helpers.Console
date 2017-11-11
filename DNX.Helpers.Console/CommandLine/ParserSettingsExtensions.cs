@@ -13,7 +13,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <param name="settings">The settings.</param>
         public static void Reset(this ParserSettings settings)
         {
-            ParserExtensions.ResetSettings();
+            ParserExtendedSettings.Reset();
         }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <param name="value">if set to <c>true</c> [value].</param>
         public static void ShouldThrowOnParseFailure(this ParserSettings settings, bool value)
         {
-            ParserExtensions.ThrowOnParseFailure = value;
+            ParserExtendedSettings.ThrowOnParseFailure = value;
         }
     }
 }
