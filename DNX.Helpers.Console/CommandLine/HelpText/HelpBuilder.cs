@@ -1,7 +1,7 @@
 ﻿using CommandLine;
-using CommandLine.Text;
+using DNX.Helpers.Console.CommandLine.Arguments;
 
-namespace DNX.Helpers.Console.CommandLine
+namespace DNX.Helpers.Console.CommandLine.HelpText
 {
     /// <summary>
     /// Class HelpBuilder.
@@ -18,7 +18,12 @@ namespace DNX.Helpers.Console.CommandLine
         /// <returns>System.String.</returns>
         public static string GetHelpText<T>(ParserResult<T> parserResult, bool verbsIndex = false, int consoleWidth = 80)
         {
-            return HelpText.AutoBuild(parserResult, null, null, verbsIndex, consoleWidth);
+            return global::CommandLine.Text.HelpText.AutoBuild(parserResult, null, null, verbsIndex, consoleWidth);
+        }
+
+        public static ArgumentsMap BuildArgumentsMap<T>(this ParserResult<T> parserResult)
+        {
+
         }
     }
 }
