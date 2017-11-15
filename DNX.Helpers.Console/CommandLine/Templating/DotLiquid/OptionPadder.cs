@@ -10,10 +10,10 @@ namespace DNX.Helpers.Console.CommandLine.Templating.DotLiquid
     {
         private static string PadTo(string input, int length)
         {
-            return input.PadRight(length);
+            return (input ?? string.Empty).PadRight(length);
         }
 
-        public static string padoptionby2(Context context, string input)
+        public static string padoptionby(Context context, string input, int padLength)
         {
             var maxLength = context.MaxIterations;
 
@@ -23,10 +23,24 @@ namespace DNX.Helpers.Console.CommandLine.Templating.DotLiquid
             var options = optionsDict != null && optionsDict.Any()
                 ? optionsDict.Select(o => o.ToInstance<OptionArgument>()).ToList()
                 : Enumerable.Empty<OptionArgument>();
-            //["Options"].Cast<OptionArgument>();
-            var maxOptionShortcut = options.Max(o => o.Shortcut.Length);
 
-            return PadTo(input, maxOptionShortcut + 2);
+            var maxOptionShortcut = options
+                .Max(o => o.Shortcut.Length);
+
+            var maxOptionName = options
+                .Max(o => string.IsNullOrEmpty(o.Name) ? 0 : o.Name.Length);
+
+            return PadTo(input, maxOptionShortcut + maxOptionName + padLength);
+        }
+
+        public static string padoptionby2(Context context, string input)
+        {
+            return padoptionby(context, input, 2);
+        }
+
+        public static string padoptionby4(Context context, string input)
+        {
+            return padoptionby(context, input, 4);
         }
 
         public static string pad8(string input)

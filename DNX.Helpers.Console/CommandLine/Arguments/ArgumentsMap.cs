@@ -16,12 +16,27 @@ namespace DNX.Helpers.Console.CommandLine.Arguments
     {
         public string Shortcut { get; set; }
 
-
         public string Name { get; set; }
 
         public string Description { get; set; }
 
         public bool Required { get; set; }
+
+        public int MaxShortcutLength { get; set; }
+
+        public int MaxNameLength { get; set; }
+
+        public string ValueType { get; set; }
+
+        public string Pad
+        {
+            get
+            {
+                var padLength = Math.Max(MaxNameLength + MaxShortcutLength - (Name ?? string.Empty).Length - (Shortcut ?? string.Empty).Length, 0);
+
+                return new string(' ', padLength);
+            }
+        }
     }
 
     /// <summary>

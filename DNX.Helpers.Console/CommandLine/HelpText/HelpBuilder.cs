@@ -1,4 +1,5 @@
-﻿using CommandLine;
+﻿using System;
+using CommandLine;
 using DNX.Helpers.Console.CommandLine.Arguments;
 
 namespace DNX.Helpers.Console.CommandLine.HelpText
@@ -23,7 +24,7 @@ namespace DNX.Helpers.Console.CommandLine.HelpText
 
         public static ArgumentsMap BuildArgumentsMap<T>(this ParserResult<T> parserResult)
         {
-
+            throw new NotImplementedException();
         }
     }
 }

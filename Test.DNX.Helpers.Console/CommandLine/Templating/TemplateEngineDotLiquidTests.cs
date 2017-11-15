@@ -35,8 +35,8 @@ namespace Test.DNX.Helpers.Console.CommandLine.Templating
             "{% if Parser.Options %}",
             "Options:",
             "{% for o in Parser.Options -%}",
-            "  -{{ o.Shortcut | padoptionby2 }}{{o.Name}}. {{o.Description}}",
-            "{% endfor %}",
+            "  -{{ o.Shortcut }}{% if o.Name%}, --{{ o.Name }}{% else %}    {% endif %}{{ o.Pad }}  {% if o.ValueType %}({{o.ValueType}}){% endif %} {{o.Description}}",
+            "{% endfor -%}",
             "{% endif %}",
         };
 
@@ -54,6 +54,8 @@ namespace Test.DNX.Helpers.Console.CommandLine.Templating
 
             dynamic parser = new ExpandoObject();
             parser.Failed = true;
+            parser.ShortcutPrefix = "-";
+            parser.NamePrefix = "--";
             parser.Errors = new List<IDictionary<string, object>>()
             {
                 (new ParserError() { Message = "Unknown option : -k"}).ToDictionary()
@@ -63,12 +65,23 @@ namespace Test.DNX.Helpers.Console.CommandLine.Templating
                 (new ValueArgument() { Name = "Filename", Required = true }).ToDictionary(),
                 (new ValueArgument() { Name = "Format", Required = false }).ToDictionary(),
             };
-            parser.Options = new List<IDictionary<string, object>>()
+            var options = new List<OptionArgument>()
             {
-                (new OptionArgument() { Shortcut = "m", Name = "mode", Description = "The mode to read the file in", Required = false }).ToDictionary(),
-                (new OptionArgument() { Shortcut = "v", Name = "verbose", Description = "Verbosely report progress", Required = false }).ToDictionary(),
-                (new OptionArgument() { Shortcut = "help", Name = "help", Description = "Show the help page", Required = false }).ToDictionary(),
+                new OptionArgument() { Shortcut = "m", Name = "mode", Description = "The mode to read the file in", Required = false, ValueType = "Text | Binary"  },
+                new OptionArgument() { Shortcut = "v", Name = "verbose", Description = "Verbosely report progress", Required = false, ValueType = "bool" },
+                new OptionArgument() { Shortcut = "x", Description = "Turn on debug mode", Required = false, ValueType = "bool" },
+                new OptionArgument() { Shortcut = "?", Name = "help", Description = "Show the help page", Required = false }
             };
+
+            options
+                .ForEach(opt =>
+                {
+                    opt.MaxShortcutLength = options.Max(o => (o.Shortcut ?? string.Empty).Length);
+                    opt.MaxNameLength = options.Max(o => (o.Name ?? string.Empty).Length);
+                });
+
+            parser.Options = options
+                .Select(o => o.ToDictionary());
 
             _templateEngineDotLiquid.AddObject("Parser", parser);
 
