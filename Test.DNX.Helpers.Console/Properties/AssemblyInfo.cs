@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Test.DNX.Helpers.Console")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Unit Tests for DNX.Helpers.Console")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("DNX Solutions Ltd")]
 [assembly: AssemblyProduct("Test.DNX.Helpers.Console")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright © 2017 DNX Solutions Ltd")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

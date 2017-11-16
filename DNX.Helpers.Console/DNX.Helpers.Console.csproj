@@ -39,14 +39,29 @@
       <HintPath>..\packages\DNX.Helpers.1.0.13\lib\net452\DNX.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DotLiquid, Version=2.0.227.0, Culture=neutral, PublicKeyToken=82e46016ecf9f07c, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotLiquid.2.0.227\lib\net45\DotLiquid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mustachio, Version=1.0.26.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mustachio.1.1.26\lib\net45\Mustachio.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLine\ArgumentExtensions.cs" />
+    <Compile Include="CommandLine\HelpBuilder.cs" />
     <Compile Include="CommandLine\Help\ArgumentsMap.cs" />
     <Compile Include="CommandLine\Help\HelpBuilder.cs" />
+    <Compile Include="CommandLine\Arguments\ArgumentsMap.cs" />
+    <Compile Include="CommandLine\HelpText\HelpBuilder.cs" />
     <Compile Include="CommandLine\Help\Templating\BaseTemplateEngine.cs" />
     <Compile Include="CommandLine\Help\Templating\DotLiquidTemplateEngine.cs" />
     <Compile Include="CommandLine\Help\Templating\ITemplateEngine.cs" />
@@ -66,6 +81,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ParserExtensions.tt</DependentUpon>
     </Compile>
+    <Compile Include="CommandLine\Templating\BaseTemplatingEngine.cs" />
+    <Compile Include="CommandLine\Templating\DotLiquid\OptionPadder.cs" />
+    <Compile Include="CommandLine\Templating\DotLiquid\TemplateEngineDotLiquid.cs" />
+    <Compile Include="CommandLine\Templating\Mustachio\TemplateEngineMustachio.cs" />
     <Compile Include="ConsoleColourChanger.cs" />
     <Compile Include="ConsoleHelper.cs" />
     <Compile Include="Exceptions\ParserResultExceptionT.cs" />
@@ -78,6 +97,7 @@
     <Compile Include="Samples\Program.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="DNX.Helpers.Console.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -94,6 +114,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
