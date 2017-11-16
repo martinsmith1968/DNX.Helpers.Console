@@ -5,24 +5,23 @@ using System.Linq;
 using System.Reflection;
 using DNX.Helpers.Assemblies;
 using DNX.Helpers.Console.CommandLine.Arguments;
-using DNX.Helpers.Console.CommandLine.Templating;
 using DNX.Helpers.Console.CommandLine.Templating.Mustachio;
 using DNX.Helpers.Reflection;
 using DNX.Helpers.Strings;
 using NUnit.Framework;
 using Shouldly;
 
-namespace Test.DNX.Helpers.Console.CommandLine.Templating
+namespace Test.DNX.Helpers.Console.CommandLine.Templating.Mustachio
 {
     [TestFixture]
-    public class TemplateEngineMustachioTests
+    public class MustachioTemplateEngineTests
     {
-        private TemplateEngineMustachio _templateEngineMustachio;
+        private TemplateEngineMustachio _templateEngine;
 
         [SetUp]
         public void TestInitialise()
         {
-            _templateEngineMustachio = new TemplateEngineMustachio();
+            _templateEngine = new TemplateEngineMustachio();
         }
 
         [Test]
@@ -54,10 +53,10 @@ namespace Test.DNX.Helpers.Console.CommandLine.Templating
                 (new ParserError() { Message = "Unknown option : -k"}).ToDictionary()
             };
 
-            _templateEngineMustachio.AddObject("Parser", parser);
+            _templateEngine.AddObject("Parser", parser);
 
             // Act
-            var result = _templateEngineMustachio.Render(templateLines);
+            var result = _templateEngine.Render(templateLines);
 
             // Assert
             result.ShouldNotBeNullOrEmpty();

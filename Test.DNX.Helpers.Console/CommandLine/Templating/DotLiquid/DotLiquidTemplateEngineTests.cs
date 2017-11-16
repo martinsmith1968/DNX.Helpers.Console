@@ -11,12 +11,12 @@ using DNX.Helpers.Strings;
 using NUnit.Framework;
 using Shouldly;
 
-namespace Test.DNX.Helpers.Console.CommandLine.Templating
+namespace Test.DNX.Helpers.Console.CommandLine.Templating.DotLiquid
 {
     [TestFixture]
-    public class TemplateEngineDotLiquidTests
+    public class DotLiquidTemplateEngineTests
     {
-        private TemplateEngineDotLiquid _templateEngineDotLiquid;
+        private DotLiquidTemplateEngine _templateEngine;
 
         private static readonly string[] BoilerplateTemplateLines = new[]
         {
@@ -43,7 +43,7 @@ namespace Test.DNX.Helpers.Console.CommandLine.Templating
         [SetUp]
         public void TestInitialise()
         {
-            _templateEngineDotLiquid = new TemplateEngineDotLiquid();
+            _templateEngine = new DotLiquidTemplateEngine();
         }
 
         [Test]
@@ -83,10 +83,11 @@ namespace Test.DNX.Helpers.Console.CommandLine.Templating
             parser.Options = options
                 .Select(o => o.ToDictionary());
 
-            _templateEngineDotLiquid.AddObject("Parser", parser);
+            _templateEngine.AddObject("Parser", parser);
 
             // Act
-            var result = _templateEngineDotLiquid.Render(BoilerplateTemplateLines);
+            var resultLines = _templateEngine.Render(BoilerplateTemplateLines);
+            var result = string.Join(Environment.NewLine, resultLines);
 
             // Assert
             result.ShouldNotBeNullOrEmpty();

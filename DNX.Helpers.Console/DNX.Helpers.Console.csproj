@@ -57,15 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLine\ArgumentExtensions.cs" />
-    <Compile Include="CommandLine\HelpBuilder.cs" />
-    <Compile Include="CommandLine\Help\ArgumentsMap.cs" />
     <Compile Include="CommandLine\Help\HelpBuilder.cs" />
-    <Compile Include="CommandLine\Arguments\ArgumentsMap.cs" />
-    <Compile Include="CommandLine\HelpText\HelpBuilder.cs" />
-    <Compile Include="CommandLine\Help\Templating\BaseTemplateEngine.cs" />
-    <Compile Include="CommandLine\Help\Templating\DotLiquidTemplateEngine.cs" />
-    <Compile Include="CommandLine\Help\Templating\ITemplateEngine.cs" />
-    <Compile Include="CommandLine\Help\Templating\TemplateEngineFactory.cs" />
+    <Compile Include="CommandLine\Help\ArgumentsMap.cs" />
+    <Compile Include="CommandLine\Help\Templates.cs" />
+    <Compile Include="CommandLine\Templating\BaseTemplateEngine.cs" />
+    <Compile Include="CommandLine\Templating\DotLiquid\DotLiquidTemplateEngine.cs" />
+    <Compile Include="CommandLine\Templating\ITemplateEngine.cs" />
     <Compile Include="CommandLine\ParserExtendedSettings.cs" />
     <Compile Include="CommandLine\ParserHelper.cs">
       <AutoGen>True</AutoGen>
@@ -81,10 +78,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ParserExtensions.tt</DependentUpon>
     </Compile>
-    <Compile Include="CommandLine\Templating\BaseTemplatingEngine.cs" />
     <Compile Include="CommandLine\Templating\DotLiquid\OptionPadder.cs" />
-    <Compile Include="CommandLine\Templating\DotLiquid\TemplateEngineDotLiquid.cs" />
-    <Compile Include="CommandLine\Templating\Mustachio\TemplateEngineMustachio.cs" />
+    <Compile Include="CommandLine\Templating\Mustachio\MustachioTemplateEngine.cs" />
     <Compile Include="ConsoleColourChanger.cs" />
     <Compile Include="ConsoleHelper.cs" />
     <Compile Include="Exceptions\ParserResultExceptionT.cs" />

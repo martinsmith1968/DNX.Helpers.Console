@@ -16,6 +16,12 @@ namespace DNX.Helpers.Console.Exceptions
         /// <value>The failure result.</value>
         public NotParsed<T> FailureResult { get; private set; }
 
+        /// <summary>
+        /// Gets a value indicating whether [help requested].
+        /// </summary>
+        /// <value><c>true</c> if [help requested]; otherwise, <c>false</c>.</value>
+        public bool HelpRequested { get; private set; }
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="T:DNX.Helpers.Console.Exceptions.ParserResultException`1" /> class.
@@ -48,6 +54,7 @@ namespace DNX.Helpers.Console.Exceptions
             : base(message, innerException)
         {
             FailureResult = failureResult;
+            HelpRequested = false; // TODO: Need to calculate this
         }
     }
 }

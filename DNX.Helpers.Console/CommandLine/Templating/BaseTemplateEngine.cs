@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using DNX.Helpers.Console.CommandLine.Templating.DotLiquid;
 using DNX.Helpers.Reflection;
 
-namespace DNX.Helpers.Console.CommandLine.Help.Templating
+namespace DNX.Helpers.Console.CommandLine.Templating
 {
+    /// <inheritdoc />
     /// <summary>
     /// Class DotLiquidTemplateEngine.
     /// </summary>
-    /// <seealso cref="DNX.Helpers.Console.CommandLine.Help.Templating.ITemplateEngine" />
+    /// <seealso cref="T:DNX.Helpers.Console.CommandLine.Help.Templating.ITemplateEngine" />
     public abstract class BaseTemplateEngine : ITemplateEngine
     {
         /// <summary>
@@ -23,6 +25,7 @@ namespace DNX.Helpers.Console.CommandLine.Help.Templating
             Substitutables = new Dictionary<string, object>();
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Resets this instance.
         /// </summary>
@@ -31,6 +34,7 @@ namespace DNX.Helpers.Console.CommandLine.Help.Templating
             Substitutables.Clear();
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Adds the object.
         /// </summary>
@@ -44,14 +48,16 @@ namespace DNX.Helpers.Console.CommandLine.Help.Templating
             Substitutables[name] = dict;
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Renders the specified template.
         /// </summary>
         /// <param name="template">The template.</param>
         /// <returns>System.String.</returns>
-        /// <exception cref="System.NotImplementedException"></exception>
+        /// <exception cref="T:System.NotImplementedException"></exception>
         public abstract string Render(string template);
 
+        /// <inheritdoc />
         /// <summary>
         /// Renders the specified template lines.
         /// </summary>

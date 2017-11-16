@@ -16,7 +16,7 @@ namespace DNX.Helpers.Console.CommandLine
         {
             settings.IgnoreUnknownArguments    = false;
             settings.CaseInsensitiveEnumValues = true;
-            settings.HelpWriter                = System.Console.Error;
+            settings.HelpWriter                = null;
 
             if (!System.Console.IsOutputRedirected)
             {

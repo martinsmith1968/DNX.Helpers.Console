@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DNX.Helpers.Console.CommandLine.Help.Templating
+namespace DNX.Helpers.Console.CommandLine.Templating
 {
     /// <summary>
     /// Interface ITemplateEngine

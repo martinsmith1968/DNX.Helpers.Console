@@ -15,7 +15,6 @@ namespace SampleApp
         [Value(0, Required = true, HelpText = "The file to process")]
         public string FileName { get; set; }
 
-
         [Option('c', "CheckExists", Default = false, HelpText = "Check folder exists")]
         public bool CheckFolderExists { get; set; }
 

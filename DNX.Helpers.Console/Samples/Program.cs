@@ -3,6 +3,7 @@ using CommandLine;
 using DNX.Helpers.Assemblies;
 using DNX.Helpers.Console;
 using DNX.Helpers.Console.CommandLine;
+using DNX.Helpers.Console.CommandLine.Help;
 using DNX.Helpers.Console.Exceptions;
 
 namespace SampleApp
@@ -33,9 +34,13 @@ namespace SampleApp
 
                 return result.Ok() ? 0 : 1;
             }
-            catch (ParserResultException<Arguments>)
+            catch (ParserResultException<Arguments> ex)
             {
-                return 1;
+                var helpText = ex.FailureResult.BuildTemplatedHelpText();
+
+                Console.Error.WriteLine(helpText);
+
+                return 2;
             }
             catch (ParserResultException ex)
             {
@@ -44,17 +49,17 @@ namespace SampleApp
                 var failureC = ex.GetFailureResultAs<CommandC>();
                 var failureD = ex.GetFailureResultAs<CommandD>();
 
-                return 1;
+                return 2;
             }
             catch (ReturnCodeException ex)
             {
-                Console.WriteLine(ex);
+                Console.Error.WriteLine(ex);
 
                 return ex.ReturnCode;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Console.Error.WriteLine(ex);
 
                 return ReturnCodeException.MaximumReturnCode;
             }

@@ -1,4 +1,5 @@
-﻿using DNX.Helpers.Console.CommandLine.Help.Templating;
+﻿using DNX.Helpers.Console.CommandLine.Templating;
+using DNX.Helpers.Console.CommandLine.Templating.DotLiquid;
 
 namespace DNX.Helpers.Console.CommandLine
 {
@@ -14,10 +15,16 @@ namespace DNX.Helpers.Console.CommandLine
         public static bool ThrowOnParseFailure { get; set; }
 
         /// <summary>
-        /// Gets or sets the type of the defaul template engine.
+        /// Gets or sets the type of the default template engine.
         /// </summary>
-        /// <value>The type of the defaul template engine.</value>
+        /// <value>The type of the default template engine.</value>
         public static ITemplateEngine TemplateEngine { get; set; }
+
+        /// <summary>
+        /// Gets or sets the width of the help text.
+        /// </summary>
+        /// <value>The width of the help text.</value>
+        public static int? HelpTextWidth { get; set; }
 
         static ParserExtendedSettings()
         {
@@ -29,8 +36,11 @@ namespace DNX.Helpers.Console.CommandLine
         /// </summary>
         public static void Reset()
         {
-            ThrowOnParseFailure = false;
+            ThrowOnParseFailure = true;
             TemplateEngine      = new DotLiquidTemplateEngine();
+            HelpTextWidth       = System.Console.IsOutputRedirected
+                ? (int?)null
+                : System.Console.WindowWidth;
         }
     }
 }

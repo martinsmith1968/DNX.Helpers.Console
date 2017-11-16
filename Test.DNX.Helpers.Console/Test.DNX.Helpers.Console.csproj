@@ -59,10 +59,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandLine\Templating\TemplateEngineDotLiquidTests.cs" />
-    <Compile Include="CommandLine\Templating\TemplateEngineMustachioTests.cs" />
+    <Compile Include="CommandLine\Templating\DotLiquid\DotLiquidTemplateEngineTests.cs" />
+    <Compile Include="CommandLine\Templating\Mustachio\MustachioTemplateEngineTests.cs" />
     <Compile Include="Exceptions\ParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Samples\ProgramSingleArgumentsClassTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
