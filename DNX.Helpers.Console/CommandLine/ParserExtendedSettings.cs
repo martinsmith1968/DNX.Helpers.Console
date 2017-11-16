@@ -1,4 +1,6 @@
-﻿namespace DNX.Helpers.Console.CommandLine
+﻿using DNX.Helpers.Console.CommandLine.Help.Templating;
+
+namespace DNX.Helpers.Console.CommandLine
 {
     /// <summary>
     /// Class ParserExtendedSettings.
@@ -11,6 +13,12 @@
         /// <value><c>true</c> to throw on parse failure; otherwise, <c>false</c>.</value>
         public static bool ThrowOnParseFailure { get; set; }
 
+        /// <summary>
+        /// Gets or sets the type of the defaul template engine.
+        /// </summary>
+        /// <value>The type of the defaul template engine.</value>
+        public static ITemplateEngine TemplateEngine { get; set; }
+
         static ParserExtendedSettings()
         {
             Reset();
@@ -22,6 +30,7 @@
         public static void Reset()
         {
             ThrowOnParseFailure = false;
+            TemplateEngine      = new DotLiquidTemplateEngine();
         }
     }
 }
