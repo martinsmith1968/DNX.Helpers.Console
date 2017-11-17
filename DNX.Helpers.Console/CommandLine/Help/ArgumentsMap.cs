@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using DNX.Helpers.Reflection;
-using DotLiquid;
+#pragma warning disable 1591
 
-namespace DNX.Helpers.Console.CommandLine.Arguments
+namespace DNX.Helpers.Console.CommandLine.Help
 {
     public class ValueArgument
     {

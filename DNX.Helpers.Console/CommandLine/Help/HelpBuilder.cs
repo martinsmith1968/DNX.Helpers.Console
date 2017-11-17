@@ -1,7 +1,6 @@
 ﻿using CommandLine;
 using CommandLine.Text;
 using DNX.Helpers.Assemblies;
-using DNX.Helpers.Console.CommandLine.Arguments;
 using DNX.Helpers.Console.CommandLine.Templating;
 
 namespace DNX.Helpers.Console.CommandLine.Help

@@ -4,7 +4,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Reflection;
 using DNX.Helpers.Assemblies;
-using DNX.Helpers.Console.CommandLine.Arguments;
+using DNX.Helpers.Console.CommandLine.Help;
 using DNX.Helpers.Console.CommandLine.Templating.DotLiquid;
 using DNX.Helpers.Reflection;
 using DNX.Helpers.Strings;

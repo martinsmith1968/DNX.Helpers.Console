@@ -1,7 +1,10 @@
-﻿namespace DNX.Helpers.Console.CommandLine.Templating.DotLiquid
+﻿#pragma warning disable 1591
+
+namespace DNX.Helpers.Console.CommandLine.Templating.DotLiquid
 {
     public static class TextPadder
     {
+        // ReSharper disable InconsistentNaming
         public static string padright40(string input)
         {
             return padright(input, 40);
