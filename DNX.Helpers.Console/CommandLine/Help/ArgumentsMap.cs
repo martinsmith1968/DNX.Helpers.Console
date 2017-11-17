@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommandLine;
 using DNX.Helpers.Reflection;
 #pragma warning disable 1591
 

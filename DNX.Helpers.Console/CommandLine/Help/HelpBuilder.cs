@@ -72,7 +72,7 @@ namespace DNX.Helpers.Console.CommandLine.Help
 
             templateEngine.AddObject("Program", new AssemblyDetails(typeof(T).Assembly));
             templateEngine.AddObject("Arguments", argumentsMap);
-            templateEngine.AddObject("Parser", parserResult);
+            templateEngine.AddObject("Result", parserResult);
 
             var helpText = templateEngine.Render(template);
 
