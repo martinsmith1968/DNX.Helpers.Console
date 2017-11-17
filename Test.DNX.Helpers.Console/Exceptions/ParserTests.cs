@@ -1,16 +1,22 @@
 ﻿using CommandLine;
 using DNX.Helpers.Console.CommandLine;
+using DNX.Helpers.Console.Interfaces;
 using NUnit.Framework;
 
 namespace Test.DNX.Helpers.Console.Exceptions
 {
-    internal class Args
+    internal class Args : IParserSettingsCustomiser
     {
         [Value(0, Required = true)]
         public string FileName { get; set; }
 
         [Option('f', "flag", Default = false, HelpText = "Optional flag", Required = false)]
         public bool Flag { get; set; }
+
+        public void CustomiseSettings(ParserSettings settings)
+        {
+            settings.ShouldThrowOnParseFailure(false);
+        }
     }
 
     [TestFixture]
@@ -23,7 +29,7 @@ namespace Test.DNX.Helpers.Console.Exceptions
             var args = new string[] {};
 
             // Act
-            var result = ParserHelper.DefaultParser.ParseAndValidate<Args>(args);
+            var result = ParserHelper.GetParserAndParse<Args>(args);
 
             // Assert
             Assert.IsNotNull(result);
@@ -37,7 +43,7 @@ namespace Test.DNX.Helpers.Console.Exceptions
             var args = "bob.txt".Split(' ');
 
             // Act
-            var result = ParserHelper.DefaultParser.ParseAndValidate<Args>(args);
+            var result = ParserHelper.GetParserAndParse<Args>(args);
 
             // Assert
             Assert.IsNotNull(result);
@@ -53,7 +59,7 @@ namespace Test.DNX.Helpers.Console.Exceptions
             var args = "bob.txt -f".Split(' ');
 
             // Act
-            var result = ParserHelper.DefaultParser.ParseAndValidate<Args>(args);
+            var result = ParserHelper.GetParserAndParse<Args>(args);
 
             // Assert
             Assert.IsNotNull(result);

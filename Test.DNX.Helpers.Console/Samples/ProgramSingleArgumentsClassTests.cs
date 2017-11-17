@@ -28,7 +28,7 @@ namespace Test.DNX.Helpers.Console.Samples
             }
             catch (ParserResultException<Arguments> ex)
             {
-                var helpText = ex.FailureResult.BuildTemplatedHelpText();
+                var helpText = HelpBuilder.BuildTemplatedHelpText(ex.FailureResult);
 
                 outputWriter.WriteLine(helpText);
 

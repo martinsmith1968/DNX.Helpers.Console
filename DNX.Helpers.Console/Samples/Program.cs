@@ -36,7 +36,7 @@ namespace SampleApp
             }
             catch (ParserResultException<Arguments> ex)
             {
-                var helpText = ex.FailureResult.BuildTemplatedHelpText();
+                var helpText = HelpBuilder.BuildTemplatedHelpText(ex.FailureResult);
 
                 Console.Error.WriteLine(helpText);
 

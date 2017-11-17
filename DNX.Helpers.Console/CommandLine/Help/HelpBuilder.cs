@@ -3,7 +3,6 @@ using CommandLine.Text;
 using DNX.Helpers.Assemblies;
 using DNX.Helpers.Console.CommandLine.Arguments;
 using DNX.Helpers.Console.CommandLine.Templating;
-using DNX.Helpers.Reflection;
 
 namespace DNX.Helpers.Console.CommandLine.Help
 {
@@ -29,11 +28,10 @@ namespace DNX.Helpers.Console.CommandLine.Help
         /// Builds the templated help text.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="parserResult">The parser result.</param>
         /// <returns>System.String.</returns>
-        public static string BuildTemplatedHelpText<T>(this ParserResult<T> parserResult)
+        public static string BuildTemplatedHelpText<T>()
         {
-            return parserResult.BuildTemplatedHelpText(Templates.StandardTemplate);
+            return BuildTemplatedHelpText<T>(Templates.StandardTemplate, ParserExtendedSettings.TemplateEngine, null);
         }
 
         /// <summary>
@@ -41,30 +39,41 @@ namespace DNX.Helpers.Console.CommandLine.Help
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="parserResult">The parser result.</param>
+        /// <returns>System.String.</returns>
+        public static string BuildTemplatedHelpText<T>(ParserResult<T> parserResult)
+        {
+            return BuildTemplatedHelpText(Templates.StandardTemplate, parserResult);
+        }
+
+        /// <summary>
+        /// Builds the templated help text.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="template">The template.</param>
+        /// <param name="parserResult">The parser result.</param>
         /// <returns>System.String.</returns>
-        public static string BuildTemplatedHelpText<T>(this ParserResult<T> parserResult, string template)
+        public static string BuildTemplatedHelpText<T>(string template, ParserResult<T> parserResult)
         {
-            return parserResult.BuildTemplatedHelpText(template, ParserExtendedSettings.TemplateEngine);
+            return BuildTemplatedHelpText(template, ParserExtendedSettings.TemplateEngine, parserResult);
         }
 
         /// <summary>
         /// Builds the templated help text.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="parserResult">The parser result.</param>
         /// <param name="template">The template.</param>
         /// <param name="templateEngine">The template engine.</param>
+        /// <param name="parserResult">The parser result.</param>
         /// <returns>System.String.</returns>
-        public static string BuildTemplatedHelpText<T>(this ParserResult<T> parserResult, string template, ITemplateEngine templateEngine)
+        public static string BuildTemplatedHelpText<T>(string template, ITemplateEngine templateEngine, ParserResult<T> parserResult)
         {
             templateEngine.Reset();
 
             var argumentsMap = ArgumentsMap.Create<T>();
 
-            templateEngine.AddObject("Program", new AssemblyDetails(typeof(T).Assembly).ToDictionary());
-            templateEngine.AddObject("Arguments", argumentsMap.ToDictionary());
-            templateEngine.AddObject("Result", parserResult.ToDictionary());
+            templateEngine.AddObject("Program", new AssemblyDetails(typeof(T).Assembly));
+            templateEngine.AddObject("Arguments", argumentsMap);
+            templateEngine.AddObject("Parser", parserResult);
 
             var helpText = templateEngine.Render(template);
 

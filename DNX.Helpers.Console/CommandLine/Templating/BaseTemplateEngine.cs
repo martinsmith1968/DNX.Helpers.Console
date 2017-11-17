@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DNX.Helpers.Console.CommandLine.Templating.DotLiquid;
 using DNX.Helpers.Reflection;
+using DNX.Helpers.Strings;
 
 namespace DNX.Helpers.Console.CommandLine.Templating
 {
@@ -65,11 +67,15 @@ namespace DNX.Helpers.Console.CommandLine.Templating
         /// <returns>System.String.</returns>
         public IList<string> Render(IList<string> templateLines)
         {
-            var output = templateLines
-                .Select(tl => Render(tl))
-                .ToList();
+            var template = string.Join(Environment.NewLine, templateLines);
 
-            return output;
+            var output = Render(template);
+
+            var outputLines = output == null
+                ? new List<string>()
+                : output.SplitByText(Environment.NewLine).ToList();
+
+            return outputLines;
         }
     }
 }

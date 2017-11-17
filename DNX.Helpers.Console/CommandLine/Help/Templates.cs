@@ -7,29 +7,35 @@ namespace DNX.Helpers.Console.CommandLine.Help
     /// </summary>
     public class Templates
     {
+        public const string ProgramHeader = "{{Program.Title}} v{{Program.SimplifiedVersion}}{% if Program.Description %} - {{Program.Description}}{% endif %}";
+
+        public const string ProgramUsage = "{{Program.FileName}}{% for a in Arguments.Positional %} {% if a.Optional %}{ {% endif %}[{{a.Name}}]{% if a.Optional %} }{% endif %}{% endfor %}{% if Arguments.Options %} { [options] }{% endif %}";
+
+        public const string ProgramOption = "-{{ o.Shortcut }}{% if o.Name%}, --{{ o.Name }}{% else %}    {% endif %}{{ o.Pad }}  {{o.Description}}{% if o.ValueType %} ({{o.ValueType}}){% endif %}";
+
         /// <summary>
         /// The standard template lines
         /// </summary>
         public static readonly string[] StandardTemplateLines = new[]
         {
-            "{{Program.Title}} v{{Program.SimplifiedVersion}}{% if Program.Description %} - {{Program.Description}}{% endif %}",
+            ProgramHeader,
             "{{Program.Copyright}}",
             "{% if Parser.Failed -%}",
             "",
             "Errors:",
-            "{% for error in Parser.Errors -%}",
-            "  {{error.Message}}",
+            "{% for e in Parser.Errors -%}",
+            "  {{e.Message}}",
             "{% endfor -%}",
             "{% endif -%}",
             "",
             "Usage:",
-            "{{Program.FileName}}{% for a in Parser.Positional %} [{{a.Name}}]{% endfor %}{% if Parser.Options %} { [options] }{% endif %}",
-            "{% if Parser.Options %}",
+            ProgramUsage,
+            "{% if Arguments.Options %}",
             "Options:",
-            "{% for o in Parser.Options -%}",
-            "  -{{ o.Shortcut }}{% if o.Name%}, --{{ o.Name }}{% else %}    {% endif %}{{ o.Pad }}  {% if o.ValueType %}({{o.ValueType}}){% endif %} {{o.Description}}",
+            "{% for o in Arguments.Options -%}",
+            ProgramOption,
             "{% endfor -%}",
-            "{% endif %}",
+            "{% endif -%}",
         };
 
         /// <summary>

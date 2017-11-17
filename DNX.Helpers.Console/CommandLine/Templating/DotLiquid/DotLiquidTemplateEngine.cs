@@ -15,7 +15,7 @@ namespace DNX.Helpers.Console.CommandLine.Templating.DotLiquid
         /// </summary>
         public DotLiquidTemplateEngine()
         {
-            Template.RegisterFilter(typeof(OptionPadder));
+            Template.RegisterFilter(typeof(TextPadder));
         }
 
         /// <inheritdoc />

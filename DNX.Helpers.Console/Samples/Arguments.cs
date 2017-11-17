@@ -7,6 +7,8 @@ using DNX.Helpers.Console.Interfaces;
 // ReSharper disable once CheckNamespace
 namespace SampleApp
 {
+    public enum FileMode { Binary, Text }
+
     /// <summary>
     /// Arguments class for command line
     /// </summary>
@@ -15,8 +17,14 @@ namespace SampleApp
         [Value(0, Required = true, HelpText = "The file to process")]
         public string FileName { get; set; }
 
+        [Value(1, Required = false, HelpText = "The format to read the file in")]
+        public string Format { get; set; }
+
         [Option('c', "CheckExists", Default = false, HelpText = "Check folder exists")]
         public bool CheckFolderExists { get; set; }
+
+        [Option('m', "mode", Default = FileMode.Text, HelpText = "The mode to read the file in")]
+        public FileMode Mode { get; set; }
 
         public void CustomiseSettings(ParserSettings settings)
         {
