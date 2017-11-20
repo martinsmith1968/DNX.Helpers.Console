@@ -33,7 +33,8 @@ namespace Test.DNX.Helpers.Console.Exceptions
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.IsFalse(result.Ok());
+            Assert.IsNotNull(result.Result);
+            Assert.IsFalse(result.Result.Ok());
         }
 
         [Test]
@@ -47,9 +48,10 @@ namespace Test.DNX.Helpers.Console.Exceptions
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.IsTrue(result.Ok());
-            Assert.AreEqual("bob.txt", result.GetArguments().FileName);
-            Assert.IsFalse(result.GetArguments().Flag);
+            Assert.IsNotNull(result.Result);
+            Assert.IsTrue(result.Result.Ok());
+            Assert.AreEqual("bob.txt", result.Result.GetArguments().FileName);
+            Assert.IsFalse(result.Result.GetArguments().Flag);
         }
 
         [Test]
@@ -63,9 +65,10 @@ namespace Test.DNX.Helpers.Console.Exceptions
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.IsTrue(result.Ok());
-            Assert.AreEqual("bob.txt", result.GetArguments().FileName);
-            Assert.IsTrue(result.GetArguments().Flag);
+            Assert.IsNotNull(result.Result);
+            Assert.IsTrue(result.Result.Ok());
+            Assert.AreEqual("bob.txt", result.Result.GetArguments().FileName);
+            Assert.IsTrue(result.Result.GetArguments().Flag);
         }
     }
 }

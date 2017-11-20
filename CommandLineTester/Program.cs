@@ -3,6 +3,7 @@ using CommandLine;
 using DNX.Helpers.Assemblies;
 using DNX.Helpers.Console;
 using DNX.Helpers.Console.CommandLine;
+using DNX.Helpers.Console.CommandLine.Results;
 using DNX.Helpers.Console.Exceptions;
 
 namespace CommandLineTester

@@ -38,9 +38,7 @@ namespace DNX.Helpers.Console.CommandLine
         {
             ThrowOnParseFailure = true;
             TemplateEngine      = new DotLiquidTemplateEngine();
-            HelpTextWidth       = System.Console.IsOutputRedirected
-                ? (int?)null
-                : System.Console.WindowWidth;
+            HelpTextWidth       = ConsoleHelper.GetConsoleWidth();
         }
     }
 }

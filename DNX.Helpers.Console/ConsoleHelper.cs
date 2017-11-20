@@ -216,5 +216,17 @@ namespace DNX.Helpers.Console
                 Display(s, System.Console.Error);
             }
         }
+
+        /// <summary>
+        /// Get the current console output window width
+        /// </summary>
+        /// <param name="defaultWidth"></param>
+        /// <returns></returns>
+        public static int? GetConsoleWidth(int? defaultWidth = 80)
+        {
+            return System.Console.IsOutputRedirected
+                ? defaultWidth
+                : System.Console.WindowWidth;
+        }
     }
 }

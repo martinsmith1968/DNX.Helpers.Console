@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CommandLine;
+using DNX.Helpers.Console.CommandLine.Results;
 
 namespace DNX.Helpers.Console.CommandLine
 {
@@ -67,7 +68,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T"></typeparam>
         /// <param name="args">The arguments.</param>
         /// <returns>CommandLine.ParserResult&lt;T&gt;.</returns>
-        public static ParserResult<T> GetParserAndParse<T>(string[] args)
+        public static IExtendedParserResult<T> GetParserAndParse<T>(string[] args)
             where T : new()
         {
             var parser = GetParser<T>();
@@ -108,7 +109,7 @@ foreach (var kvp in types)
 <# foreach (var tn in typeNumbers) { #>
         /// <typeparam name="<#= tn #>">The type of the <#= tn #>.</typeparam>
 <# } #>
-        public static ParserResult<object> GetParserAndParse<<#= typeList #>>(string[] args)
+        public static IExtendedParserResult<object> GetParserAndParse<<#= typeList #>>(string[] args)
 <# foreach (var tn in typeNumbers) { #>
             where <#= tn #> : new()
 <# } #>

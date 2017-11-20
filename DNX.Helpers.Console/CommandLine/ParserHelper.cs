@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CommandLine;
+using DNX.Helpers.Console.CommandLine.Results;
 
 namespace DNX.Helpers.Console.CommandLine
 {
@@ -58,7 +59,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T"></typeparam>
         /// <param name="args">The arguments.</param>
         /// <returns>CommandLine.ParserResult&lt;T&gt;.</returns>
-        public static ParserResult<T> GetParserAndParse<T>(string[] args)
+        public static IExtendedParserResult<T> GetParserAndParse<T>(string[] args)
             where T : new()
         {
             var parser = GetParser<T>();
@@ -88,7 +89,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// </summary>
         /// <typeparam name="T1">The type of the T1.</typeparam>
         /// <typeparam name="T2">The type of the T2.</typeparam>
-        public static ParserResult<object> GetParserAndParse<T1, T2>(string[] args)
+        public static IExtendedParserResult<object> GetParserAndParse<T1, T2>(string[] args)
             where T1 : new()
             where T2 : new()
         {
@@ -121,7 +122,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T1">The type of the T1.</typeparam>
         /// <typeparam name="T2">The type of the T2.</typeparam>
         /// <typeparam name="T3">The type of the T3.</typeparam>
-        public static ParserResult<object> GetParserAndParse<T1, T2, T3>(string[] args)
+        public static IExtendedParserResult<object> GetParserAndParse<T1, T2, T3>(string[] args)
             where T1 : new()
             where T2 : new()
             where T3 : new()
@@ -159,7 +160,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T2">The type of the T2.</typeparam>
         /// <typeparam name="T3">The type of the T3.</typeparam>
         /// <typeparam name="T4">The type of the T4.</typeparam>
-        public static ParserResult<object> GetParserAndParse<T1, T2, T3, T4>(string[] args)
+        public static IExtendedParserResult<object> GetParserAndParse<T1, T2, T3, T4>(string[] args)
             where T1 : new()
             where T2 : new()
             where T3 : new()
@@ -202,7 +203,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T3">The type of the T3.</typeparam>
         /// <typeparam name="T4">The type of the T4.</typeparam>
         /// <typeparam name="T5">The type of the T5.</typeparam>
-        public static ParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5>(string[] args)
+        public static IExtendedParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5>(string[] args)
             where T1 : new()
             where T2 : new()
             where T3 : new()
@@ -250,7 +251,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T4">The type of the T4.</typeparam>
         /// <typeparam name="T5">The type of the T5.</typeparam>
         /// <typeparam name="T6">The type of the T6.</typeparam>
-        public static ParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6>(string[] args)
+        public static IExtendedParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6>(string[] args)
             where T1 : new()
             where T2 : new()
             where T3 : new()
@@ -303,7 +304,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T5">The type of the T5.</typeparam>
         /// <typeparam name="T6">The type of the T6.</typeparam>
         /// <typeparam name="T7">The type of the T7.</typeparam>
-        public static ParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7>(string[] args)
+        public static IExtendedParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7>(string[] args)
             where T1 : new()
             where T2 : new()
             where T3 : new()
@@ -361,7 +362,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T6">The type of the T6.</typeparam>
         /// <typeparam name="T7">The type of the T7.</typeparam>
         /// <typeparam name="T8">The type of the T8.</typeparam>
-        public static ParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8>(string[] args)
+        public static IExtendedParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8>(string[] args)
             where T1 : new()
             where T2 : new()
             where T3 : new()
@@ -424,7 +425,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T7">The type of the T7.</typeparam>
         /// <typeparam name="T8">The type of the T8.</typeparam>
         /// <typeparam name="T9">The type of the T9.</typeparam>
-        public static ParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8, T9>(string[] args)
+        public static IExtendedParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8, T9>(string[] args)
             where T1 : new()
             where T2 : new()
             where T3 : new()
@@ -492,7 +493,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T8">The type of the T8.</typeparam>
         /// <typeparam name="T9">The type of the T9.</typeparam>
         /// <typeparam name="T10">The type of the T10.</typeparam>
-        public static ParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(string[] args)
+        public static IExtendedParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(string[] args)
             where T1 : new()
             where T2 : new()
             where T3 : new()
@@ -565,7 +566,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T9">The type of the T9.</typeparam>
         /// <typeparam name="T10">The type of the T10.</typeparam>
         /// <typeparam name="T11">The type of the T11.</typeparam>
-        public static ParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(string[] args)
+        public static IExtendedParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(string[] args)
             where T1 : new()
             where T2 : new()
             where T3 : new()
@@ -643,7 +644,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T10">The type of the T10.</typeparam>
         /// <typeparam name="T11">The type of the T11.</typeparam>
         /// <typeparam name="T12">The type of the T12.</typeparam>
-        public static ParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(string[] args)
+        public static IExtendedParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(string[] args)
             where T1 : new()
             where T2 : new()
             where T3 : new()
@@ -726,7 +727,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T11">The type of the T11.</typeparam>
         /// <typeparam name="T12">The type of the T12.</typeparam>
         /// <typeparam name="T13">The type of the T13.</typeparam>
-        public static ParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(string[] args)
+        public static IExtendedParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(string[] args)
             where T1 : new()
             where T2 : new()
             where T3 : new()
@@ -814,7 +815,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T12">The type of the T12.</typeparam>
         /// <typeparam name="T13">The type of the T13.</typeparam>
         /// <typeparam name="T14">The type of the T14.</typeparam>
-        public static ParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(string[] args)
+        public static IExtendedParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(string[] args)
             where T1 : new()
             where T2 : new()
             where T3 : new()
@@ -907,7 +908,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T13">The type of the T13.</typeparam>
         /// <typeparam name="T14">The type of the T14.</typeparam>
         /// <typeparam name="T15">The type of the T15.</typeparam>
-        public static ParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(string[] args)
+        public static IExtendedParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(string[] args)
             where T1 : new()
             where T2 : new()
             where T3 : new()
@@ -1005,7 +1006,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T14">The type of the T14.</typeparam>
         /// <typeparam name="T15">The type of the T15.</typeparam>
         /// <typeparam name="T16">The type of the T16.</typeparam>
-        public static ParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(string[] args)
+        public static IExtendedParserResult<object> GetParserAndParse<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(string[] args)
             where T1 : new()
             where T2 : new()
             where T3 : new()

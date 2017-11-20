@@ -57,9 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLine\ArgumentExtensions.cs" />
+    <Compile Include="CommandLine\Results\ExtendedParserResult.cs" />
+    <Compile Include="CommandLine\Results\IExtendedParserResult.cs" />
     <Compile Include="CommandLine\Help\HelpBuilder.cs" />
     <Compile Include="CommandLine\Help\ArgumentsMap.cs" />
     <Compile Include="CommandLine\Help\Templates.cs" />
+    <Compile Include="CommandLine\Results\IExtendedParserResultExtensions.cs" />
     <Compile Include="CommandLine\Templating\BaseTemplateEngine.cs" />
     <Compile Include="CommandLine\Templating\DotLiquid\DotLiquidTemplateEngine.cs" />
     <Compile Include="CommandLine\Templating\DotLiquid\TextPadder.cs" />

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CommandLine;
+using DNX.Helpers.Console.CommandLine.Results;
 using DNX.Helpers.Console.Exceptions;
 using DNX.Helpers.Console.Interfaces;
 
@@ -108,6 +109,18 @@ namespace DNX.Helpers.Console.CommandLine
             {
                 ValidateInstance(result.Result());
             }
+        }
+
+        /// <summary>
+        /// Creates the extended result.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="result">The result.</param>
+        /// <param name="parser">The parser.</param>
+        /// <returns>IExtendedParserResult.</returns>
+        public static IExtendedParserResult<T> CreateExtendedResult<T>(this ParserResult<T> result, Parser parser)
+        {
+            return new ExtendedParserResult<T>(result, parser);
         }
     }
 }

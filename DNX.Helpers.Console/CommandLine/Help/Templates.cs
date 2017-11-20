@@ -6,7 +6,7 @@ namespace DNX.Helpers.Console.CommandLine.Help
     /// <summary>
     /// Class Templates.
     /// </summary>
-    public class Templates
+    public static class Templates
     {
         public const string ProgramHeader = "{{Program.Title}} v{{Program.SimplifiedVersion}}{% if Program.Description %} - {{Program.Description}}{% endif %}";
 
@@ -25,18 +25,21 @@ namespace DNX.Helpers.Console.CommandLine.Help
             "",
             "Errors:",
             "{% for e in Result.Errors -%}",
-            "  {{e.Message}}",
+            "{{e.Message}}",
             "{% endfor -%}",
             "{% endif -%}",
             "",
             "Usage:",
             ProgramUsage,
-            "{% if Arguments.Options %}",
+            "{% if Arguments.Options -%}",
+            "",
             "Options:",
             "{% for o in Arguments.Options -%}",
             ProgramOption,
             "{% endfor -%}",
             "{% endif -%}",
+            "",
+            ""
         };
 
         /// <summary>

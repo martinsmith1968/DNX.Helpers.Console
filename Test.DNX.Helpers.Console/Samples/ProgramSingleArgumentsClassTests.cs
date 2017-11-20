@@ -4,6 +4,7 @@ using System.Text;
 using CommandLine;
 using DNX.Helpers.Console.CommandLine;
 using DNX.Helpers.Console.CommandLine.Help;
+using DNX.Helpers.Console.CommandLine.Results;
 using DNX.Helpers.Console.Exceptions;
 using NUnit.Framework;
 using SampleApp;
@@ -28,7 +29,7 @@ namespace Test.DNX.Helpers.Console.Samples
             }
             catch (ParserResultException<Arguments> ex)
             {
-                var helpText = HelpBuilder.BuildTemplatedHelpText(ex.FailureResult);
+                var helpText = HelpBuilder.BuildTemplatedHelpText(ex.Result);
 
                 outputWriter.WriteLine(helpText);
 
