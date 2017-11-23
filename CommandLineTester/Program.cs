@@ -32,13 +32,13 @@ namespace CommandLineTester
                     .WithParsed<CommandD>(d => d.Run())
                     ;
 
-                return result.Ok() ? 0 : 1;
+                return result.Success ? 0 : 1;
             }
-            catch (ParserResultException<Arguments>)
+            catch (ExtendedParserResultException<Arguments>)
             {
                 return 1;
             }
-            catch (ParserResultException ex)
+            catch (ExtendedParserResultException ex)
             {
                 var failureA = ex.GetFailureResultAs<CommandA>();
                 var failureB = ex.GetFailureResultAs<CommandB>();

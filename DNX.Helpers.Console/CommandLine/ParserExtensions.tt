@@ -33,9 +33,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 <#
 foreach (var kvp in types)
@@ -60,9 +62,11 @@ foreach (var kvp in types)
 
             var result = parser.ParseArguments<<#= typeList #>>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 <# } #>
     }

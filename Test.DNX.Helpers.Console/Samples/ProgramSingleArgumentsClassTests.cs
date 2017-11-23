@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using CommandLine;
 using DNX.Helpers.Console.CommandLine;
 using DNX.Helpers.Console.CommandLine.Help;
 using DNX.Helpers.Console.CommandLine.Results;
@@ -25,11 +24,11 @@ namespace Test.DNX.Helpers.Console.Samples
                 var result = ParserHelper.GetParserAndParse<Arguments>(args)
                     .WithParsed(runAction);
 
-                return result.Ok() ? 0 : 1;
+                return result.Success ? 0 : 1;
             }
-            catch (ParserResultException<Arguments> ex)
+            catch (ExtendedParserResultException<Arguments> ex)
             {
-                var helpText = HelpBuilder.BuildTemplatedHelpText(ex.Result);
+                var helpText = HelpBuilder.BuildTemplatedHelpText(ex.ExtendedParserResult.Result);
 
                 outputWriter.WriteLine(helpText);
 

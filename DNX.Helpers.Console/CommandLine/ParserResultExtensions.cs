@@ -20,22 +20,22 @@ namespace DNX.Helpers.Console.CommandLine
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         public static bool Ok<T>(this ParserResult<T> result)
         {
-            return result.Result() != null;
+            return result.SuccessResult() != null;
         }
 
         /// <summary>
-        /// Results the specified result.
+        /// Returns the success result
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="result">The result.</param>
         /// <returns>Parsed&lt;T&gt;.</returns>
-        public static Parsed<T> Result<T>(this ParserResult<T> result)
+        public static Parsed<T> SuccessResult<T>(this ParserResult<T> result)
         {
             return result as Parsed<T>;
         }
 
         /// <summary>
-        /// Errors the result.
+        /// Returns the failure result
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="result">The result.</param>
@@ -53,7 +53,7 @@ namespace DNX.Helpers.Console.CommandLine
         /// <returns>T.</returns>
         public static T GetArguments<T>(this ParserResult<T> result)
         {
-            var successResult = result.Result();
+            var successResult = result.SuccessResult();
 
             return successResult != null
                 ? successResult.Value
@@ -96,18 +96,18 @@ namespace DNX.Helpers.Console.CommandLine
         /// <typeparam name="T"></typeparam>
         /// <param name="result">The result.</param>
         /// <returns>ParserResult&lt;T&gt;.</returns>
-        /// <exception cref="ParserResultException{T}"></exception>
-        internal static void PostProcessResult<T>(this ParserResult<T> result)
+        /// <exception cref="ExtendedParserResultException{T}"></exception>
+        internal static void PostProcessResult<T>(this IExtendedParserResult<T> result)
             where T : new()
         {
-            if (ParserExtendedSettings.ThrowOnParseFailure && !result.Ok())
+            if (ParserExtendedSettings.ThrowOnParseFailure && !result.Success)
             {
-                throw new ParserResultException<T>(result.ErrorResult());
+                throw new ExtendedParserResultException<T>(result.Result.ErrorResult().CreateExtendedResult(result.Parser));
             }
 
-            if (result.Ok())
+            if (result.Success)
             {
-                ValidateInstance(result.Result());
+                ValidateInstance(result.Result.SuccessResult());
             }
         }
 

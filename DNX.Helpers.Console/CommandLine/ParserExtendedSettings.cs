@@ -6,7 +6,7 @@ namespace DNX.Helpers.Console.CommandLine
     /// <summary>
     /// Class ParserExtendedSettings.
     /// </summary>
-    public class ParserExtendedSettings
+    public static class ParserExtendedSettings
     {
         /// <summary>
         /// Gets or sets a value indicating whether the Parser should throw an Exception if parsing fails

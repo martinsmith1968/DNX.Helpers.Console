@@ -21,10 +21,10 @@ namespace DNX.Helpers.Console.CommandLine.Help
         {
             ProgramHeader,
             "{{Program.Copyright}}",
-            "{% if Result.Failed -%}",
+            "{% if ParserResult.Failed -%}",
             "",
             "Errors:",
-            "{% for e in Result.Errors -%}",
+            "{% for e in ParserResult.Errors -%}",
             "{{e.Message}}",
             "{% endfor -%}",
             "{% endif -%}",

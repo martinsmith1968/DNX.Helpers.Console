@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
 using System.Reflection;
 using DNX.Helpers.Assemblies;
 using DNX.Helpers.Console.CommandLine.Help;
+using DNX.Helpers.Console.CommandLine.Help.Maps;
 using DNX.Helpers.Console.CommandLine.Templating.DotLiquid;
 using DNX.Helpers.Reflection;
-using DNX.Helpers.Strings;
 using NUnit.Framework;
 using Shouldly;
 
@@ -43,14 +42,13 @@ namespace Test.DNX.Helpers.Console.CommandLine.Templating.DotLiquid
             result.Failed = true;
             result.Errors = new List<IDictionary<string, object>>()
             {
-                new ParserError() {Message = "Invalid argument: -k"}.ToDictionary()
+                new ParserErrorMap() {Message = "Invalid argument: -k"}.ToDictionary()
             };
 
-            _templateEngine.AddObject("Result", result);
+            _templateEngine.AddObject("ParserResult", result);
 
             // Act
-            var resultLines = _templateEngine.Render(Templates.StandardTemplateLines);
-            var resultText = string.Join(Environment.NewLine, resultLines);
+            var resultText = _templateEngine.Render(Templates.StandardTemplate);
 
             // Assert
             resultText.ShouldNotBeNullOrEmpty();

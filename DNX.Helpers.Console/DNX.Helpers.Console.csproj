@@ -35,16 +35,12 @@
       <HintPath>..\packages\CommandLineParser.2.1.1-beta\lib\net45\CommandLine.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DNX.Helpers, Version=1.0.14.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DNX.Helpers.1.0.14\lib\net452\DNX.Helpers.dll</HintPath>
+    <Reference Include="DNX.Helpers, Version=1.0.15.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DNX.Helpers.1.0.15\lib\net452\DNX.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DotLiquid, Version=2.0.229.0, Culture=neutral, PublicKeyToken=82e46016ecf9f07c, processorArchitecture=MSIL">
       <HintPath>..\packages\DotLiquid.2.0.229\lib\net45\DotLiquid.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Mustachio, Version=1.0.26.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mustachio.1.1.26\lib\net45\Mustachio.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -57,10 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLine\ArgumentExtensions.cs" />
+    <Compile Include="CommandLine\Help\Maps\OptionArgumentMap.cs" />
+    <Compile Include="CommandLine\Help\Maps\ParserErrorMap.cs" />
+    <Compile Include="CommandLine\Help\Maps\PositionalArgumentMap.cs" />
     <Compile Include="CommandLine\Results\ExtendedParserResult.cs" />
     <Compile Include="CommandLine\Results\IExtendedParserResult.cs" />
     <Compile Include="CommandLine\Help\HelpBuilder.cs" />
-    <Compile Include="CommandLine\Help\ArgumentsMap.cs" />
+    <Compile Include="CommandLine\Help\Maps\ArgumentsMap.cs" />
     <Compile Include="CommandLine\Help\Templates.cs" />
     <Compile Include="CommandLine\Results\IExtendedParserResultExtensions.cs" />
     <Compile Include="CommandLine\Templating\BaseTemplateEngine.cs" />
@@ -82,11 +81,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ParserExtensions.tt</DependentUpon>
     </Compile>
-    <Compile Include="CommandLine\Templating\Mustachio\MustachioTemplateEngine.cs" />
     <Compile Include="ConsoleColourChanger.cs" />
     <Compile Include="ConsoleHelper.cs" />
-    <Compile Include="Exceptions\ParserResultExceptionT.cs" />
-    <Compile Include="Exceptions\ParserResultException.cs" />
+    <Compile Include="Exceptions\ExtendedParserResultExceptionT.cs" />
+    <Compile Include="Exceptions\ExtendedParserResultException.cs" />
     <Compile Include="Exceptions\ReturnCodeException.cs" />
     <Compile Include="Interfaces\IParserSettingsCustomiser.cs" />
     <Compile Include="Interfaces\IPostParseValidator.cs" />

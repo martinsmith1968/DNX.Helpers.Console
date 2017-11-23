@@ -24,9 +24,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 
         /// <summary>
@@ -43,9 +45,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T1, T2>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 
         /// <summary>
@@ -63,9 +67,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T1, T2, T3>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 
         /// <summary>
@@ -84,9 +90,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T1, T2, T3, T4>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 
         /// <summary>
@@ -106,9 +114,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T1, T2, T3, T4, T5>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 
         /// <summary>
@@ -129,9 +139,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T1, T2, T3, T4, T5, T6>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 
         /// <summary>
@@ -153,9 +165,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T1, T2, T3, T4, T5, T6, T7>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 
         /// <summary>
@@ -178,9 +192,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T1, T2, T3, T4, T5, T6, T7, T8>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 
         /// <summary>
@@ -204,9 +220,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T1, T2, T3, T4, T5, T6, T7, T8, T9>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 
         /// <summary>
@@ -231,9 +249,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 
         /// <summary>
@@ -259,9 +279,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 
         /// <summary>
@@ -288,9 +310,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 
         /// <summary>
@@ -318,9 +342,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 
         /// <summary>
@@ -349,9 +375,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 
         /// <summary>
@@ -381,9 +409,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
 
         /// <summary>
@@ -414,9 +444,11 @@ namespace DNX.Helpers.Console.CommandLine
 
             var result = parser.ParseArguments<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(expandedArgs);
 
-            result.PostProcessResult();
+            var extendedResult = result.CreateExtendedResult(parser);
 
-            return result.CreateExtendedResult(parser);
+            extendedResult.PostProcessResult();
+
+            return extendedResult;
         }
     }
 }

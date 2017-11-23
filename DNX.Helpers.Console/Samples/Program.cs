@@ -33,17 +33,17 @@ namespace SampleApp
                     .WithParsed<CommandD>(d => d.Run())
                     ;
 
-                return result.Ok() ? 0 : 1;
+                return result.Success ? 0 : 1;
             }
-            catch (ParserResultException<Arguments> ex)
+            catch (ExtendedParserResultException<Arguments> ex)
             {
-                var helpText = HelpBuilder.BuildTemplatedHelpText(ex.Result);
+                var helpText = HelpBuilder.BuildTemplatedHelpText(ex.ExtendedParserResult.Result);
 
                 Console.Error.WriteLine(helpText);
 
                 return 2;
             }
-            catch (ParserResultException ex)
+            catch (ExtendedParserResultException ex)
             {
                 var failureA = ex.GetFailureResultAs<CommandA>();
                 var failureB = ex.GetFailureResultAs<CommandB>();

@@ -16,9 +16,10 @@ namespace DNX.Helpers.Console.CommandLine.Results
         /// <param name="result">The result.</param>
         /// <param name="action">The action.</param>
         /// <returns>ParserResult&lt;T&gt;.</returns>
-        public static ParserResult<T> WithNotParsed<T>(this IExtendedParserResult<T> result, Action<IEnumerable<Error>> action)
+        public static IExtendedParserResult<T> WithNotParsed<T>(this IExtendedParserResult<T> result, Action<IEnumerable<Error>> action)
         {
-            return result.Result.WithNotParsed(action);
+            return result.Result.WithNotParsed(action)
+                .CreateExtendedResult(result.Parser);
         }
 
         /// <summary>
@@ -28,9 +29,10 @@ namespace DNX.Helpers.Console.CommandLine.Results
         /// <param name="result">The result.</param>
         /// <param name="action">The action.</param>
         /// <returns>ParserResult&lt;System.Object&gt;.</returns>
-        public static ParserResult<object> WithParsed<T>(this IExtendedParserResult<object> result, Action<T> action)
+        public static IExtendedParserResult<object> WithParsed<T>(this IExtendedParserResult<object> result, Action<T> action)
         {
-            return result.Result.WithParsed(action);
+            return result.Result.WithParsed(action)
+                .CreateExtendedResult(result.Parser);
         }
 
         /// <summary>
@@ -40,9 +42,10 @@ namespace DNX.Helpers.Console.CommandLine.Results
         /// <param name="result">The result.</param>
         /// <param name="action">The action.</param>
         /// <returns>ParserResult&lt;T&gt;.</returns>
-        public static ParserResult<T> WithParsed<T>(this IExtendedParserResult<T> result, Action<T> action)
+        public static IExtendedParserResult<T> WithParsed<T>(this IExtendedParserResult<T> result, Action<T> action)
         {
-            return result.Result.WithParsed(action);
+            return result.Result.WithParsed(action)
+                .CreateExtendedResult(result.Parser);
         }
     }
 }

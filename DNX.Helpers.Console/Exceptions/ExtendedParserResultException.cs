@@ -1,5 +1,6 @@
 ﻿using System;
 using CommandLine;
+using DNX.Helpers.Console.CommandLine.Results;
 
 namespace DNX.Helpers.Console.Exceptions
 {
@@ -8,14 +9,8 @@ namespace DNX.Helpers.Console.Exceptions
     /// Class ParserResultException.
     /// </summary>
     /// <seealso cref="T:System.Exception" />
-    public class ParserResultException : Exception
+    public class ExtendedParserResultException : ExtendedParserResultException<object>
     {
-        /// <summary>
-        /// Gets the failure result.
-        /// </summary>
-        /// <value>The failure result.</value>
-        public object FailureResult { get; private set; }
-
         /// <summary>
         /// Gets the failure result as.
         /// </summary>
@@ -24,26 +19,26 @@ namespace DNX.Helpers.Console.Exceptions
         public NotParsed<T> GetFailureResultAs<T>()
             where T : class
         {
-            return FailureResult as NotParsed<T>;
+            return ExtendedParserResult.Result as NotParsed<T>;
         }
 
-        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="T:DNX.Helpers.Console.Exceptions.ParserResultException`1" /> class.
         /// </summary>
         /// <param name="failureResult">The failure result.</param>
-        public ParserResultException(object failureResult)
+        /// <inheritdoc />
+        public ExtendedParserResultException(ExtendedParserResult<object> failureResult)
             : this(failureResult, null)
         {
         }
 
-        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="T:DNX.Helpers.Console.Exceptions.ParserResultException`1" /> class.
         /// </summary>
         /// <param name="failureResult">The failure result.</param>
         /// <param name="message">The message.</param>
-        public ParserResultException(object failureResult, string message)
+        /// <inheritdoc />
+        public ExtendedParserResultException(ExtendedParserResult<object> failureResult, string message)
             : this(failureResult, message, null)
         {
         }
@@ -55,10 +50,9 @@ namespace DNX.Helpers.Console.Exceptions
         /// <param name="message">The message.</param>
         /// <param name="innerException">The inner exception.</param>
         /// <inheritdoc />
-        public ParserResultException(object failureResult, string message, Exception innerException)
-            : base(message, innerException)
+        public ExtendedParserResultException(ExtendedParserResult<object> failureResult, string message, Exception innerException)
+            : base(failureResult, message, innerException)
         {
-            FailureResult = failureResult;
         }
     }
 }

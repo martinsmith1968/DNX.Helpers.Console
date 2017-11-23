@@ -1,6 +1,7 @@
 ﻿using CommandLine;
 using CommandLine.Text;
 using DNX.Helpers.Assemblies;
+using DNX.Helpers.Console.CommandLine.Help.Maps;
 using DNX.Helpers.Console.CommandLine.Templating;
 
 namespace DNX.Helpers.Console.CommandLine.Help
@@ -72,7 +73,7 @@ namespace DNX.Helpers.Console.CommandLine.Help
 
             templateEngine.AddObject("Program", new AssemblyDetails(typeof(T).Assembly));
             templateEngine.AddObject("Arguments", argumentsMap);
-            templateEngine.AddObject("Result", parserResult);
+            templateEngine.AddObject("ParserResult", parserResult);
 
             var helpText = templateEngine.Render(template);
 
