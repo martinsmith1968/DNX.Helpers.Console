@@ -53,9 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLine\ArgumentExtensions.cs" />
-    <Compile Include="CommandLine\Help\Maps\OptionArgumentMap.cs" />
-    <Compile Include="CommandLine\Help\Maps\ParserErrorMap.cs" />
-    <Compile Include="CommandLine\Help\Maps\PositionalArgumentMap.cs" />
+    <Compile Include="CommandLine\Help\Maps\ArgumentInfo.cs" />
+    <Compile Include="CommandLine\Help\Maps\IArgumentInfo.cs" />
+    <Compile Include="CommandLine\Help\Maps\OptionArgumentInfo.cs" />
+    <Compile Include="CommandLine\Help\Maps\ParserErrorInfo.cs" />
+    <Compile Include="CommandLine\Help\Maps\PositionalArgumentInfo.cs" />
     <Compile Include="CommandLine\Results\ExtendedParserResult.cs" />
     <Compile Include="CommandLine\Results\IExtendedParserResult.cs" />
     <Compile Include="CommandLine\Help\HelpBuilder.cs" />

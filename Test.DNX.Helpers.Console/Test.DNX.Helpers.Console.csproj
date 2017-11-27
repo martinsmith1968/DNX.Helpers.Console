@@ -55,6 +55,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandLine\Help\Maps\ArgumentsMapTests.cs" />
     <Compile Include="CommandLine\Templating\DotLiquid\DotLiquidTemplateEngineTests.cs" />
     <Compile Include="Exceptions\ParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

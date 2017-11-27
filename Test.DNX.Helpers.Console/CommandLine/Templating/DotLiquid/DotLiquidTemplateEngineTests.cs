@@ -42,7 +42,7 @@ namespace Test.DNX.Helpers.Console.CommandLine.Templating.DotLiquid
             result.Failed = true;
             result.Errors = new List<IDictionary<string, object>>()
             {
-                new ParserErrorMap() {Message = "Invalid argument: -k"}.ToDictionary()
+                new ParserErrorInfo() {Message = "Invalid argument: -k"}.ToDictionary()
             };
 
             _templateEngine.AddObject("ParserResult", result);

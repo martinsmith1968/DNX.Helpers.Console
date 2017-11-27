@@ -5,7 +5,7 @@ namespace DNX.Helpers.Console.CommandLine.Help.Maps
     /// <summary>
     /// Class ParserError.
     /// </summary>
-    public class ParserErrorMap
+    public class ParserErrorInfo
     {
         /// <summary>
         /// Gets or sets the message.
