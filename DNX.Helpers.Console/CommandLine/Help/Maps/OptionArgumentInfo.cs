@@ -28,6 +28,11 @@ namespace DNX.Helpers.Console.CommandLine.Help.Maps
 
         public static OptionArgumentInfo Create(MemberInfo memberInfo, OptionAttribute option)
         {
+            if (option == null)
+            {
+                return null;
+            }
+
             var instance = new OptionArgumentInfo()
             {
                 Name         = option.LongName,

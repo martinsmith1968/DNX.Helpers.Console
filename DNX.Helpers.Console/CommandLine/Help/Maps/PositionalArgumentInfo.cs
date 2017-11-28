@@ -20,6 +20,11 @@ namespace DNX.Helpers.Console.CommandLine.Help.Maps
 
         public static PositionalArgumentInfo Create(MemberInfo memberInfo, ValueAttribute value)
         {
+            if (value == null)
+            {
+                return null;
+            }
+
             var instance = new PositionalArgumentInfo()
             {
                 Name         = memberInfo.Name,

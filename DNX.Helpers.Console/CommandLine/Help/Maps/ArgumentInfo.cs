@@ -10,58 +10,30 @@ namespace DNX.Helpers.Console.CommandLine.Help.Maps
     {
         public static bool IsPositionalArgument(MemberInfo memberInfo)
         {
-            if (memberInfo == null)
-            {
-                return false;
-            }
-
-            var attributes = memberInfo.GetCustomAttributes<ValueAttribute>(true)
-                .ToList();
-
-            return attributes.HasAny();
+            return memberInfo.GetCustomAttributes<ValueAttribute>()
+                .HasAny();
         }
 
         public static PositionalArgumentInfo GetPositionalArgumentInfo(MemberInfo memberInfo)
         {
-            if (memberInfo == null)
-            {
-                return null;
-            }
-
             var attributes = memberInfo.GetCustomAttributes<ValueAttribute>(true)
                 .ToList();
 
-            return attributes.HasAny()
-                ? PositionalArgumentInfo.Create(memberInfo, attributes.First())
-                : null;
+            return PositionalArgumentInfo.Create(memberInfo, attributes.FirstOrDefault());
         }
 
         public static bool IsOptionArgument(MemberInfo memberInfo)
         {
-            if (memberInfo == null)
-            {
-                return false;
-            }
-
-            var attributes = memberInfo.GetCustomAttributes<OptionAttribute>(true)
-                .ToList();
-
-            return attributes.HasAny();
+            return memberInfo.GetCustomAttributes<OptionAttribute>()
+                .HasAny();
         }
 
         public static OptionArgumentInfo GetOptionArgumentInfo(MemberInfo memberInfo)
         {
-            if (memberInfo == null)
-            {
-                return null;
-            }
-
             var attributes = memberInfo.GetCustomAttributes<OptionAttribute>(true)
                 .ToList();
 
-            return attributes.HasAny()
-                ? OptionArgumentInfo.Create(memberInfo, attributes.First())
-                : null;
+            return OptionArgumentInfo.Create(memberInfo, attributes.FirstOrDefault());
         }
     }
 }

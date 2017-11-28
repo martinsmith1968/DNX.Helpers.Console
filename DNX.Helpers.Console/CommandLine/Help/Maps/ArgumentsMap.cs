@@ -47,16 +47,8 @@ namespace DNX.Helpers.Console.CommandLine.Help.Maps
                 .Where(t => ArgumentInfo.IsPositionalArgument(t))
                 .ToList()
                 .ForEach(p => PositionalArguments.Add(ArgumentInfo.GetPositionalArgumentInfo(p)));
-            GetArgumentFields(type)
-                .Where(t => ArgumentInfo.IsPositionalArgument(t))
-                .ToList()
-                .ForEach(p => PositionalArguments.Add(ArgumentInfo.GetPositionalArgumentInfo(p)));
 
             GetArgumentProperties(type)
-                .Where(t => ArgumentInfo.IsOptionArgument(t))
-                .ToList()
-                .ForEach(p => OptionArguments.Add(ArgumentInfo.GetOptionArgumentInfo(p)));
-            GetArgumentFields(type)
                 .Where(t => ArgumentInfo.IsOptionArgument(t))
                 .ToList()
                 .ForEach(p => OptionArguments.Add(ArgumentInfo.GetOptionArgumentInfo(p)));
@@ -87,13 +79,6 @@ namespace DNX.Helpers.Console.CommandLine.Help.Maps
         {
             return type
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty)
-                .ToList();
-        }
-
-        private IList<FieldInfo> GetArgumentFields(Type type)
-        {
-            return type
-                .GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty)
                 .ToList();
         }
 
