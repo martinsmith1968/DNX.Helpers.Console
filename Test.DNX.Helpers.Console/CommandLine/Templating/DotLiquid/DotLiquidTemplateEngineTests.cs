@@ -6,6 +6,7 @@ using DNX.Helpers.Assemblies;
 using DNX.Helpers.Console.CommandLine.Help;
 using DNX.Helpers.Console.CommandLine.Help.Maps;
 using DNX.Helpers.Console.CommandLine.Templating.DotLiquid;
+using DNX.Helpers.Linq;
 using DNX.Helpers.Reflection;
 using NUnit.Framework;
 using Shouldly;
@@ -38,12 +39,14 @@ namespace Test.DNX.Helpers.Console.CommandLine.Templating.DotLiquid
             var argumentsMap = ArgumentsMap.Create<TestArguments>();
             _templateEngine.AddObject("Arguments", argumentsMap);
 
-            dynamic result = new ExpandoObject();
-            result.Failed = true;
-            result.Errors = new List<IDictionary<string, object>>()
+            var errors = new List<IDictionary<string, object>>()
             {
                 new ParserErrorInfo() {Message = "Invalid argument: -k"}.ToDictionary()
             };
+
+            dynamic result = new ExpandoObject();
+            result.Errors = errors;
+            result.Failed = errors.HasAny();
 
             _templateEngine.AddObject("ParserResult", result);
 
