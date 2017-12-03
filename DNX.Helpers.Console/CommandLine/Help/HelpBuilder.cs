@@ -31,7 +31,7 @@ namespace DNX.Helpers.Console.CommandLine.Help
         /// <returns>System.String.</returns>
         public static string BuildTemplatedHelpText<T>()
         {
-            return BuildTemplatedHelpText<T>(Templates.StandardTemplate, ParserExtendedSettings.TemplateEngine, null);
+            return BuildTemplatedHelpText<T>(null, Templates.StandardTemplate, ParserExtendedSettings.TemplateEngine);
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace DNX.Helpers.Console.CommandLine.Help
         /// <returns>System.String.</returns>
         public static string BuildTemplatedHelpText<T>(ParserResult<T> parserResult)
         {
-            return BuildTemplatedHelpText(Templates.StandardTemplate, parserResult);
+            return BuildTemplatedHelpText(parserResult, Templates.StandardTemplate);
         }
 
         /// <summary>
@@ -52,9 +52,9 @@ namespace DNX.Helpers.Console.CommandLine.Help
         /// <param name="template">The template.</param>
         /// <param name="parserResult">The parser result.</param>
         /// <returns>System.String.</returns>
-        public static string BuildTemplatedHelpText<T>(string template, ParserResult<T> parserResult)
+        public static string BuildTemplatedHelpText<T>(ParserResult<T> parserResult, string template)
         {
-            return BuildTemplatedHelpText(template, ParserExtendedSettings.TemplateEngine, parserResult);
+            return BuildTemplatedHelpText(parserResult, template, ParserExtendedSettings.TemplateEngine);
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace DNX.Helpers.Console.CommandLine.Help
         /// <param name="templateEngine">The template engine.</param>
         /// <param name="parserResult">The parser result.</param>
         /// <returns>System.String.</returns>
-        public static string BuildTemplatedHelpText<T>(string template, ITemplateEngine templateEngine, ParserResult<T> parserResult)
+        public static string BuildTemplatedHelpText<T>(ParserResult<T> parserResult, string template, ITemplateEngine templateEngine)
         {
             templateEngine.Reset();
 
