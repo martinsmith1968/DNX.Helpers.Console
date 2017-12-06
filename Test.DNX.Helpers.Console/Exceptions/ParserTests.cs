@@ -15,7 +15,9 @@ namespace Test.DNX.Helpers.Console.Exceptions
 
         public void CustomiseSettings(ParserSettings settings)
         {
-            settings.ShouldThrowOnParseFailure(false);
+            var extendedSettings = ParserExtendedSettings.GetExtendedSettings(settings);
+
+            extendedSettings.ThrowOnParseFailure = false;
         }
     }
 

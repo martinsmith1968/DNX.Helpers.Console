@@ -20,10 +20,11 @@ namespace CommandLineTester
 
         public void CustomiseSettings(ParserSettings settings)
         {
-            // Add custom parser settings here
+            var extendedSettings = ParserExtendedSettings.GetExtendedSettings(settings);
 
-            settings.Reset();
-            //settings.ShouldThrowOnParseFailure(true);
+            // Add custom parser settings here
+            extendedSettings.Reset();
+            //extendedSettings.ThrowOnParseFailure = true;
         }
 
         public void Validate()

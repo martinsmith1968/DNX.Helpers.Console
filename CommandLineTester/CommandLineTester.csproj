@@ -37,8 +37,8 @@
       <HintPath>..\packages\CommandLineParser.2.1.1-beta\lib\net45\CommandLine.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DNX.Helpers, Version=1.0.15.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DNX.Helpers.1.0.15\lib\net452\DNX.Helpers.dll</HintPath>
+    <Reference Include="DNX.Helpers, Version=1.0.20.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DNX.Helpers.1.0.20\lib\net452\DNX.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

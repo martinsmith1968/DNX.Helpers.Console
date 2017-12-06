@@ -14,6 +14,11 @@ namespace DNX.Helpers.Console.CommandLine
     {
         internal static Parser GetCustomisedParser(params Action<ParserSettings>[] customisers)
         {
+			return GetCustomisedParser(customisers.ToList());
+		}
+
+		internal static Parser GetCustomisedParser(IList<Action<ParserSettings>> customisers)
+		{
             var customiserList = new List<Action<ParserSettings>>
             {
                 ParserSettingsHelper.DefaultParserCustomiser
@@ -25,9 +30,9 @@ namespace DNX.Helpers.Console.CommandLine
                 .ForEach(c => customiserList.Add(c))
                 ;
 
-            var chainedSettings = ParserSettingsChain.Create(customiserList);
+            var customiserChain = ParserSettingsChain.Create(customiserList);
 
-            return new Parser(chainedSettings);
+            return new Parser(customiserChain);
         }
 
         /// <summary>
@@ -79,7 +84,7 @@ namespace DNX.Helpers.Console.CommandLine
             where T2 : new()
         {
             return GetCustomisedParser(
-                ParserSettingsHelper.GetSettingsCustomiser<T1>()
+                 ParserSettingsHelper.GetSettingsCustomiser<T1>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T2>()
                 );
         }
@@ -110,7 +115,7 @@ namespace DNX.Helpers.Console.CommandLine
             where T3 : new()
         {
             return GetCustomisedParser(
-                ParserSettingsHelper.GetSettingsCustomiser<T1>()
+                 ParserSettingsHelper.GetSettingsCustomiser<T1>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T2>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T3>()
                 );
@@ -146,7 +151,7 @@ namespace DNX.Helpers.Console.CommandLine
             where T4 : new()
         {
             return GetCustomisedParser(
-                ParserSettingsHelper.GetSettingsCustomiser<T1>()
+                 ParserSettingsHelper.GetSettingsCustomiser<T1>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T2>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T3>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T4>()
@@ -187,7 +192,7 @@ namespace DNX.Helpers.Console.CommandLine
             where T5 : new()
         {
             return GetCustomisedParser(
-                ParserSettingsHelper.GetSettingsCustomiser<T1>()
+                 ParserSettingsHelper.GetSettingsCustomiser<T1>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T2>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T3>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T4>()
@@ -233,7 +238,7 @@ namespace DNX.Helpers.Console.CommandLine
             where T6 : new()
         {
             return GetCustomisedParser(
-                ParserSettingsHelper.GetSettingsCustomiser<T1>()
+                 ParserSettingsHelper.GetSettingsCustomiser<T1>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T2>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T3>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T4>()
@@ -284,7 +289,7 @@ namespace DNX.Helpers.Console.CommandLine
             where T7 : new()
         {
             return GetCustomisedParser(
-                ParserSettingsHelper.GetSettingsCustomiser<T1>()
+                 ParserSettingsHelper.GetSettingsCustomiser<T1>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T2>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T3>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T4>()
@@ -340,7 +345,7 @@ namespace DNX.Helpers.Console.CommandLine
             where T8 : new()
         {
             return GetCustomisedParser(
-                ParserSettingsHelper.GetSettingsCustomiser<T1>()
+                 ParserSettingsHelper.GetSettingsCustomiser<T1>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T2>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T3>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T4>()
@@ -401,7 +406,7 @@ namespace DNX.Helpers.Console.CommandLine
             where T9 : new()
         {
             return GetCustomisedParser(
-                ParserSettingsHelper.GetSettingsCustomiser<T1>()
+                 ParserSettingsHelper.GetSettingsCustomiser<T1>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T2>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T3>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T4>()
@@ -467,7 +472,7 @@ namespace DNX.Helpers.Console.CommandLine
             where T10 : new()
         {
             return GetCustomisedParser(
-                ParserSettingsHelper.GetSettingsCustomiser<T1>()
+                 ParserSettingsHelper.GetSettingsCustomiser<T1>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T2>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T3>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T4>()
@@ -538,7 +543,7 @@ namespace DNX.Helpers.Console.CommandLine
             where T11 : new()
         {
             return GetCustomisedParser(
-                ParserSettingsHelper.GetSettingsCustomiser<T1>()
+                 ParserSettingsHelper.GetSettingsCustomiser<T1>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T2>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T3>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T4>()
@@ -614,7 +619,7 @@ namespace DNX.Helpers.Console.CommandLine
             where T12 : new()
         {
             return GetCustomisedParser(
-                ParserSettingsHelper.GetSettingsCustomiser<T1>()
+                 ParserSettingsHelper.GetSettingsCustomiser<T1>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T2>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T3>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T4>()
@@ -695,7 +700,7 @@ namespace DNX.Helpers.Console.CommandLine
             where T13 : new()
         {
             return GetCustomisedParser(
-                ParserSettingsHelper.GetSettingsCustomiser<T1>()
+                 ParserSettingsHelper.GetSettingsCustomiser<T1>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T2>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T3>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T4>()
@@ -781,7 +786,7 @@ namespace DNX.Helpers.Console.CommandLine
             where T14 : new()
         {
             return GetCustomisedParser(
-                ParserSettingsHelper.GetSettingsCustomiser<T1>()
+                 ParserSettingsHelper.GetSettingsCustomiser<T1>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T2>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T3>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T4>()
@@ -872,7 +877,7 @@ namespace DNX.Helpers.Console.CommandLine
             where T15 : new()
         {
             return GetCustomisedParser(
-                ParserSettingsHelper.GetSettingsCustomiser<T1>()
+                 ParserSettingsHelper.GetSettingsCustomiser<T1>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T2>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T3>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T4>()
@@ -968,7 +973,7 @@ namespace DNX.Helpers.Console.CommandLine
             where T16 : new()
         {
             return GetCustomisedParser(
-                ParserSettingsHelper.GetSettingsCustomiser<T1>()
+                 ParserSettingsHelper.GetSettingsCustomiser<T1>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T2>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T3>()
                 ,ParserSettingsHelper.GetSettingsCustomiser<T4>()

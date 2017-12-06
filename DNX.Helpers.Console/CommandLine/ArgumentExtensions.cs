@@ -20,15 +20,18 @@ namespace DNX.Helpers.Console.CommandLine
 
             foreach (var arg in args)
             {
+                var handled = false;
                 if (arg.StartsWith("@"))
                 {
                     var fileInfo = new FileInfo(arg.RemoveStartsWith("@"));
                     if (fileInfo.Exists)
                     {
                         expandedArgs.AddRange(File.ReadAllLines(fileInfo.FullName));
+                        handled = true;
                     }
                 }
-                else
+
+                if (!handled)
                 {
                     expandedArgs.Add(arg);
                 }

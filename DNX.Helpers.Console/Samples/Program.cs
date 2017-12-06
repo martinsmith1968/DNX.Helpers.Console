@@ -1,5 +1,4 @@
 ﻿using System;
-using CommandLine;
 using DNX.Helpers.Assemblies;
 using DNX.Helpers.Console;
 using DNX.Helpers.Console.CommandLine;
@@ -24,7 +23,8 @@ namespace SampleApp
             try
             {
                 var result = ParserHelper.GetParserAndParse<Arguments>(args)
-                    .WithParsed(Run);
+                    .WithParsed(Run)
+                    ;
 
                 var result2 = ParserHelper.GetParserAndParse<CommandA, CommandB, CommandC, CommandD>(args)
                     .WithParsed<CommandA>(a => a.Run())

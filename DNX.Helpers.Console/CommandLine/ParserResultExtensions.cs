@@ -100,9 +100,13 @@ namespace DNX.Helpers.Console.CommandLine
         internal static void PostProcessResult<T>(this IExtendedParserResult<T> result)
             where T : new()
         {
-            if (ParserExtendedSettings.ThrowOnParseFailure && !result.Success)
+            if (!result.Success)
             {
-                throw new ExtendedParserResultException<T>(result.Result.ErrorResult().CreateExtendedResult(result.Parser));
+                var extendedSettings = ParserExtendedSettings.GetExtendedSettings(result.Parser.Settings);
+                if (extendedSettings.ThrowOnParseFailure)
+                {
+                    throw new ExtendedParserResultException<T>(result.Result.ErrorResult().CreateExtendedResult(result.Parser));
+                }
             }
 
             if (result.Success)

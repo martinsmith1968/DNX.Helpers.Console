@@ -31,7 +31,7 @@ namespace DNX.Helpers.Console.CommandLine.Help
         /// <returns>System.String.</returns>
         public static string BuildTemplatedHelpText<T>()
         {
-            return BuildTemplatedHelpText<T>(null, Templates.StandardTemplate, ParserExtendedSettings.TemplateEngine);
+            return BuildTemplatedHelpText<T>(null, Templates.StandardTemplate, ParserExtendedSettings.DefaultTemplateEngine);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace DNX.Helpers.Console.CommandLine.Help
         /// <returns>System.String.</returns>
         public static string BuildTemplatedHelpText<T>(ParserResult<T> parserResult, string template)
         {
-            return BuildTemplatedHelpText(parserResult, template, ParserExtendedSettings.TemplateEngine);
+            return BuildTemplatedHelpText(parserResult, template, ParserExtendedSettings.DefaultTemplateEngine);
         }
 
         /// <summary>

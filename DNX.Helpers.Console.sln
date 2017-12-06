@@ -9,12 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.DNX.Helpers.Console", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{0AB03902-3270-434A-A23A-1050643E2B79}"
 	ProjectSection(SolutionItems) = preProject
-		LICENSE = LICENSE
-		README.md = README.md
+		licence.txt = licence.txt
+		readme.md = readme.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commands", "Commands", "{6A59AA5C-37A8-457E-9C66-A2CFDB762BBA}"
 	ProjectSection(SolutionItems) = preProject
+		commands.json = commands.json
 		GenerateMarkdown.cmd = GenerateMarkdown.cmd
 		NuGet.Package.cmd = NuGet.Package.cmd
 		NuGet.publish.cmd = NuGet.publish.cmd

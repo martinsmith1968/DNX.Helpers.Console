@@ -1,6 +1,7 @@
 ﻿using System;
 using CommandLine;
 using DNX.Helpers.Console.Interfaces;
+using DNX.Helpers.Reflection;
 
 namespace DNX.Helpers.Console.CommandLine
 {
@@ -28,9 +29,17 @@ namespace DNX.Helpers.Console.CommandLine
         public static bool CanCustomiseSettings<T>()
             where T : new()
         {
-            var customiser = new T() as IParserSettingsCustomiser;
+            return CanCustomiseSettings(typeof(T));
+        }
 
-            return customiser != null;
+        /// <summary>
+        /// Determines whether this instance can customise the settings for the specified parser.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns><c>true</c> if this instance can customise the settings for the specified parser; otherwise, <c>false</c>.</returns>
+        public static bool CanCustomiseSettings(Type type)
+        {
+            return type.IsA<IParserSettingsCustomiser>();
         }
 
         /// <summary>
