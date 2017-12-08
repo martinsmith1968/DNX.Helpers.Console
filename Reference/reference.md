@@ -208,7 +208,7 @@ Get the current console output window width
 
 | Name | Description |
 | ---- | ----------- |
-| defaultWidth | *System.Nullable{System.Int32}*<br> |
+| defaultWidth | *System.Int32*<br> |
 
 
 #### Returns
