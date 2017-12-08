@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFi
 	ProjectSection(SolutionItems) = preProject
 		licence.txt = licence.txt
 		readme.md = readme.md
+		todo.md = todo.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commands", "Commands", "{6A59AA5C-37A8-457E-9C66-A2CFDB762BBA}"
@@ -26,6 +27,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{14AF8A
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reference", "Reference", "{428A8585-5F6F-42A5-88A9-56152570E634}"
+	ProjectSection(SolutionItems) = preProject
+		Reference\reference.md = Reference\reference.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{54170C5C-3C75-4E1A-9C53-6D10BC14B8D4}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Exceptions.md = Docs\Exceptions.md
+		Docs\main.md = Docs\main.md
 	EndProjectSection
 EndProject
 Global
@@ -48,5 +60,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6A59AA5C-37A8-457E-9C66-A2CFDB762BBA} = {0AB03902-3270-434A-A23A-1050643E2B79}
+		{428A8585-5F6F-42A5-88A9-56152570E634} = {0AB03902-3270-434A-A23A-1050643E2B79}
+		{54170C5C-3C75-4E1A-9C53-6D10BC14B8D4} = {0AB03902-3270-434A-A23A-1050643E2B79}
 	EndGlobalSection
 EndGlobal
