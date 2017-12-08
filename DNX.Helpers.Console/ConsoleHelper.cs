@@ -222,7 +222,7 @@ namespace DNX.Helpers.Console
         /// </summary>
         /// <param name="defaultWidth"></param>
         /// <returns></returns>
-        public static int? GetConsoleWidth(int? defaultWidth = 80)
+        public static int GetConsoleWidth(int defaultWidth = 80)
         {
             return System.Console.IsOutputRedirected
                 ? defaultWidth
