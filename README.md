@@ -13,9 +13,10 @@ From NuGet package explorer:
 
 Helpers are divided into the following namespaces:
 
+| Namespace | Descripion |
+| --- | --- |
 | [main](Docs/main.md) | General purpose classes for working with the console |
 | [Exceptions](Docs/Exceptions.md) | Exceptions to assist with responding to known and controlled errors |
-
 
 ### Reference
 
