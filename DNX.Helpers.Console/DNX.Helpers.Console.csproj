@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DNX.Helpers, Version=1.0.20.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DNX.Helpers.1.0.20\lib\net452\DNX.Helpers.dll</HintPath>
+    <Reference Include="DNX.Helpers, Version=1.0.23.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DNX.Helpers.1.0.23\lib\net452\DNX.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -50,12 +50,12 @@
     <Compile Include="Exceptions\ReturnCodeException.cs" />
     <Compile Include="Interfaces\IColourChanger.cs" />
     <Compile Include="Modifiers\BackgroundColourChanger.cs" />
-    <Compile Include="Modifiers\ColourChanger.cs" />
+    <Compile Include="Modifiers\ColourChangerHelper.cs" />
     <Compile Include="Modifiers\ConsoleColourChanger.cs" />
     <Compile Include="Modifiers\ForegroundColourChanger.cs" />
     <Compile Include="Modifiers\SingleColourChanger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Text\ConsoleText.cs" />
+    <Compile Include="Text\ConsoleTextHelper.cs" />
     <Compile Include="Text\ConsoleTextCollection.cs" />
     <Compile Include="Text\PlainText.cs" />
   </ItemGroup>

@@ -17,7 +17,7 @@ namespace DNX.Helpers.Console.Text
         public IList<IConsoleText> Parts { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConsoleText" /> class.
+        /// Initializes a new instance of the <see cref="ConsoleTextHelper" /> class.
         /// </summary>
         public ConsoleTextCollection()
         {
@@ -44,30 +44,6 @@ namespace DNX.Helpers.Console.Text
         {
             Write(textWriter);
             textWriter.WriteLine();
-        }
-
-        /// <summary>
-        /// Parses the specified text.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <returns>IList&lt;IConsoleText&gt;.</returns>
-        public IList<IConsoleText> Parse(string text)
-        {
-            var list = new List<IConsoleText>();
-
-            // var sampleText = "The error should [[Yellow]]appear in [[Red]]Red[[/Red]][[/Yellow]].";
-
-            while (!string.IsNullOrEmpty(text))
-            {
-                var item = ConsoleText.Parse(ref text);
-
-                if (item != null)
-                {
-                    list.Add(item);
-                }
-            }
-
-            return list;
         }
     }
 }

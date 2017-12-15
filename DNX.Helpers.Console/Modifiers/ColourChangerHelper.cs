@@ -7,7 +7,7 @@ namespace DNX.Helpers.Console.Modifiers
     /// <summary>
     /// Class ColourChanger.
     /// </summary>
-    public static class ColourChanger
+    public static class ColourChangerHelper
     {
         /// <summary>
         /// Creates the specified colour.

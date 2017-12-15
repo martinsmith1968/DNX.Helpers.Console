@@ -33,6 +33,15 @@ namespace DNX.Helpers.Console.Modifiers
         }
 
         /// <summary>
+        /// Gets the colour.
+        /// </summary>
+        /// <value>The colour.</value>
+        public ConsoleColor Colour
+        {
+            get { return Foreground.Colour; }
+        }
+
+        /// <summary>
         /// Changes the colour.
         /// </summary>
         /// <param name="newColour">The new colour.</param>
