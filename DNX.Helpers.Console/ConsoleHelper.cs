@@ -1,220 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
-using System.Linq;
-using DNX.Helpers.Assemblies;
+using System.Threading;
+using DNX.Helpers.Console.Enums;
 using DNX.Helpers.Strings.Interpolation;
 
 namespace DNX.Helpers.Console
 {
-    /// <summary>
-    /// Enum DisplayAtAlignment
-    /// </summary>
-    public enum DisplayAtAlignment
-    {
-        /// <summary>
-        /// The left
-        /// </summary>
-        Left,
-        /// <summary>
-        /// The right
-        /// </summary>
-        Right,
-        /// <summary>
-        /// The centre
-        /// </summary>
-        Centre
-    }
-
     /// <summary>
     ///
     /// </summary>
     public static class ConsoleHelper
     {
         /// <summary>
-        ///
+        /// The press any key text
         /// </summary>
-        public static void DisplayHeader(AssemblyDetails assemblyDetails)
+        public const string PressAnyKeyText = "Press any key to continue...";
+
+        /// <summary>
+        /// The press any key timeout text
+        /// </summary>
+        public const string PressAnyKeyTimeoutText = "Press any key to continue (or wait {timeout.TotalSeconds} seconds)...";
+
+        /// <summary>
+        /// Clears the input keys.
+        /// </summary>
+        public static void ClearInputKeys()
         {
-            DisplayHeader(assemblyDetails, System.Console.Out);
+            while (System.Console.KeyAvailable)
+            {
+                System.Console.ReadKey(true);
+            }
         }
 
         /// <summary>
-        /// Displays the header.
+        /// Gets the size of the console.
         /// </summary>
-        /// <param name="assemblyDetails">The assembly details.</param>
-        /// <param name="headers">The headers.</param>
-        public static void DisplayHeader(AssemblyDetails assemblyDetails, IList<string> headers)
+        /// <param name="defaultWidth">The default width.</param>
+        /// <param name="defaultHeight">The default height.</param>
+        /// <returns>Size.</returns>
+        public static Size GetConsoleSize(int defaultWidth = 80, int defaultHeight = 25)
         {
-            DisplayHeader(assemblyDetails, headers, System.Console.Out);
-        }
-
-        ///  <summary>
-        ///
-        ///  </summary>
-        /// <param name="assemblyDetails"></param>
-        /// <param name="writer"></param>
-        public static void DisplayHeader(AssemblyDetails assemblyDetails, TextWriter writer)
-        {
-            var headers = new[]
+            var size = new Size
             {
-                "{Name} v{version.Major}.{version.Minor} - {Description}",
-                "{Copyright}"
+                Height = System.Console.IsOutputRedirected ? defaultHeight : System.Console.WindowHeight,
+                Width = System.Console.IsOutputRedirected ? defaultWidth : System.Console.WindowWidth
             };
 
-            DisplayHeader(assemblyDetails, headers, writer);
-        }
-
-        /// <summary>
-        /// Displays the header.
-        /// </summary>
-        /// <param name="assemblyDetails">The assembly details.</param>
-        /// <param name="headers">The headers.</param>
-        /// <param name="writer">The writer.</param>
-        public static void DisplayHeader(AssemblyDetails assemblyDetails, IList<string> headers, TextWriter writer)
-        {
-            var instances = new[]
-            {
-                new NamedInstance(assemblyDetails),
-                new NamedInstance(assemblyDetails.Version, "version"),
-                new NamedInstance(assemblyDetails.AssemblyName, "assemblyName"),
-            };
-
-            headers.ToList()
-                .ForEach(h => writer.WriteLine(h.InterpolateWithAll(instances)));
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public static void Display()
-        {
-            Display(null);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="s"></param>
-        public static void Display(string s)
-        {
-            Display(s, true);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="s"></param>
-        /// <param name="newline"></param>
-        public static void Display(string s, bool newline)
-        {
-            Display(s, System.Console.Out, newline);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="s"></param>
-        /// <param name="wtr"></param>
-        public static void Display(string s, TextWriter wtr)
-        {
-            Display(s, wtr, true);
-        }
-
-        /// <summary>
-        /// Displays the specified s.
-        /// </summary>
-        /// <param name="s">The s.</param>
-        /// <param name="wtr">The WTR.</param>
-        /// <param name="newline">The newline.</param>
-        public static void Display(string s, TextWriter wtr, bool newline)
-        {
-            if (newline)
-            {
-                wtr.WriteLine(s);
-            }
-            else
-            {
-                wtr.Write(s);
-            }
-        }
-
-        /// <summary>
-        /// Displays at.
-        /// </summary>
-        /// <param name="y">The y.</param>
-        /// <param name="x">The x.</param>
-        /// <param name="text">The text.</param>
-        public static void DisplayAt(int y, int x, string text)
-        {
-            DisplayAt(y, x, text, DisplayAtAlignment.Left);
-        }
-
-        /// <summary>
-        /// Displays at.
-        /// </summary>
-        /// <param name="y">The y.</param>
-        /// <param name="x">The x.</param>
-        /// <param name="text">The text.</param>
-        /// <param name="alignment">The alignment.</param>
-        public static void DisplayAt(int y, int x, string text, DisplayAtAlignment alignment)
-        {
-            if (!string.IsNullOrEmpty(text))
-            {
-                switch (alignment)
-                {
-                    case DisplayAtAlignment.Right:
-                        x -= text.Length;
-                        break;
-
-                    case DisplayAtAlignment.Centre:
-                        x -= (text.Length / 2);
-                        break;
-                }
-            }
-
-            MoveTo(y, x);
-            System.Console.Out.Write(text);
-        }
-
-        /// <summary>
-        /// Moves to.
-        /// </summary>
-        /// <param name="y">The y.</param>
-        /// <param name="x">The x.</param>
-        public static void MoveTo(int y, int x)
-        {
-            System.Console.CursorLeft = x;
-            System.Console.CursorTop = y;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="s"></param>
-        public static void DisplayError(string s)
-        {
-            DisplayError(s, true);
-        }
-
-        /// <summary>
-        /// Displays the error.
-        /// </summary>
-        /// <param name="s">The s.</param>
-        /// <param name="changeColour">if set to <c>true</c> [change colour].</param>
-        public static void DisplayError(string s, bool changeColour)
-        {
-            if (changeColour)
-            {
-                using (new ConsoleColourChanger(ConsoleColor.Red, ColorType.Foreground))
-                {
-                    Display(s, System.Console.Error);
-                }
-            }
-            else
-            {
-                Display(s, System.Console.Error);
-            }
+            return size;
         }
 
         /// <summary>
@@ -224,9 +57,121 @@ namespace DNX.Helpers.Console
         /// <returns></returns>
         public static int GetConsoleWidth(int defaultWidth = 80)
         {
-            return System.Console.IsOutputRedirected
-                ? defaultWidth
-                : System.Console.WindowWidth;
+            return GetConsoleSize(defaultWidth: defaultWidth).Width;
+        }
+
+        /// <summary>
+        /// Get the current console output window width
+        /// </summary>
+        /// <param name="defaultHeight"></param>
+        /// <returns></returns>
+        public static int GetConsoleHeight(int defaultHeight = 25)
+        {
+            return GetConsoleSize(defaultHeight: defaultHeight).Height;
+        }
+
+        /// <summary>
+        /// Pauses until a key is pressed
+        /// </summary>
+        /// <param name="textWriter">The text writer.</param>
+        /// <returns>PauseResult.</returns>
+        public static PauseResult Pause(this TextWriter textWriter)
+        {
+            return textWriter.Pause(PressAnyKeyText);
+        }
+
+        /// <summary>
+        /// Pauses until a key is pressed
+        /// </summary>
+        /// <param name="textWriter">The text writer.</param>
+        /// <param name="text">The text.</param>
+        /// <returns>PauseResult.</returns>
+        public static PauseResult Pause(this TextWriter textWriter, string text)
+        {
+            return textWriter.Pause(text, null);
+        }
+
+        /// <summary>
+        /// Pauses until a key is pressed or the timeout expires
+        /// </summary>
+        /// <param name="textWriter">The text writer.</param>
+        /// <param name="timeout">The timeout.</param>
+        /// <returns>PauseResult.</returns>
+        public static PauseResult Pause(this TextWriter textWriter, TimeSpan timeout)
+        {
+            return textWriter.Pause(PressAnyKeyTimeoutText, timeout);
+        }
+
+        /// <summary>
+        /// Pauses until a key is pressed or the timeout expires
+        /// </summary>
+        /// <param name="textWriter">The text writer.</param>
+        /// <param name="text">The text.</param>
+        /// <param name="timeout">The timeout.</param>
+        /// <returns>PauseResult.</returns>
+        public static PauseResult Pause(this TextWriter textWriter, string text, TimeSpan? timeout)
+        {
+            var pauseText = timeout.HasValue
+                ? text.InterpolateWith(timeout.Value, "timeout")
+                : text;
+
+            textWriter.Write(pauseText);
+
+            ClearInputKeys();
+
+            if (!timeout.HasValue)
+            {
+                System.Console.ReadKey(true);
+
+                return PauseResult.KeyPressed;
+            }
+
+            var timeoutLimit = DateTime.UtcNow.Add(timeout.Value);
+            while (DateTime.UtcNow < timeoutLimit)
+            {
+                if (System.Console.KeyAvailable)
+                {
+                    return PauseResult.KeyPressed;
+                }
+
+                Thread.Sleep(100);
+            }
+
+            return PauseResult.Timeout;
+        }
+
+        /// <summary>
+        /// Gets the color.
+        /// </summary>
+        /// <param name="colorType">Type of the color.</param>
+        /// <returns>ConsoleColor.</returns>
+        public static ConsoleColor GetColor(ColorType colorType)
+        {
+            switch (colorType)
+            {
+                case ColorType.Background:
+                    return System.Console.BackgroundColor;
+                default:
+                    return System.Console.ForegroundColor;
+            }
+        }
+
+        /// <summary>
+        /// Sets the color.
+        /// </summary>
+        /// <param name="color">The color.</param>
+        /// <param name="colorType">Type of the color.</param>
+        public static void SetColor(ConsoleColor color, ColorType colorType)
+        {
+            switch (colorType)
+            {
+                case ColorType.Background:
+                    System.Console.BackgroundColor = color;
+                    break;
+                default:
+                    System.Console.ForegroundColor = color;
+                    break;
+            }
         }
     }
 }
