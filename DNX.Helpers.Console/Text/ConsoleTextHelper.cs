@@ -66,6 +66,12 @@ namespace DNX.Helpers.Console.Text
                 }
 
                 var item = ParseItem(ref text);
+                if (item == null && !string.IsNullOrEmpty(text))
+                {
+                    throw new Exception(string.Format("Invlaid Console Text - Unexpected or unknown Tag ident: {0}:{1}", consoleTextItem.Type, consoleTextItem.Ident));
+                }
+
+
                 if (item != null)
                 {
                     collection.Parts.Add(item);

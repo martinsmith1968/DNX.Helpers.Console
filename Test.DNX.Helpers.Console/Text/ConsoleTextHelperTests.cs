@@ -87,5 +87,35 @@ namespace Test.DNX.Helpers.Console.Text
             var part1 = collection.Parts[1].ShouldBeOfType<PlainText>();
             part1.Text.ShouldBe(" Message Text");
         }
+
+        [Test]
+        public static void Parse_throws_Exception_on_badly_nested_items()
+        {
+            // Arrange
+            const string text = "[[Yellow]]2017-12-16 [[Red]]Error:[[/Blue]] MethodName:[[/Yellow]] Message Text";
+
+            // Act
+            var ex = Should.Throw<Exception>(() => ConsoleTextHelper.Parse(text));
+
+            // Assert
+            ex.ShouldBeOfType<Exception>();
+            ex.Message.ShouldContain("Red");
+            ex.Message.ShouldContain("Blue");
+        }
+
+        [Test]
+        public static void Parse_throws_Exception_on_badly_formed_ident()
+        {
+            // Arrange
+            const string text =
+                "[[Yellow]]2017-12-16 [[Middleground:Red]]Error:[[/Blue]] MethodName:[[/Yellow]] Message Text";
+
+            // Act
+            var ex = Should.Throw<Exception>(() => ConsoleTextHelper.Parse(text));
+
+            // Assert
+            ex.ShouldBeOfType<Exception>();
+            ex.Message.ShouldContain("Middleground:Red");
+        }
     }
 }
