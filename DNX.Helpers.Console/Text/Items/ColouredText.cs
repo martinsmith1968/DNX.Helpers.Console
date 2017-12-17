@@ -63,7 +63,7 @@ namespace DNX.Helpers.Console.Text
         {
             using (var colourChanger = ColourChangerHelper.Create(Colour, ColourType))
             {
-                textWriter.Write(Text);
+                Text.Write(textWriter);
             }
         }
 
@@ -87,7 +87,8 @@ namespace DNX.Helpers.Console.Text
         public static bool CanParse(string text)
         {
             return !string.IsNullOrEmpty(text)
-                   && text.StartsWith("[[");
+                   && text.StartsWith(ConsoleTextHelper.MarkerTagStart)
+                   && ConsoleColourDefinition.FromText(ConsoleTextHelper.GetNextMarkerIdent(text)) != null;
         }
 
         /// <summary>
@@ -102,56 +103,19 @@ namespace DNX.Helpers.Console.Text
                 return null;
             }
 
-            var colouredTextIdent = text.ParseFirstMatchToDictionary(@"\[\[(?<ident>[^\]]+)\]\]");
-            if (!colouredTextIdent.ContainsKey("ident") || string.IsNullOrEmpty(colouredTextIdent["ident"]))
-            {
-                return null;
-            }
+            var ident = ConsoleTextHelper.GetNextMarkerIdent(text);
 
-            var ident = colouredTextIdent["ident"];
+            var colourDefinition = ConsoleColourDefinition.FromText(ident);
 
-            var startText = string.Format("[[{0}]]", ident);
-            var endText   = string.Format("[[/{0}]]", ident);
-            var innerText = text.Between(startText, endText);
+            text = text.RemoveStartMarkerByIdent(ident);
 
-            var colourAndType = ParseColourAndType(ident);
+            var innerText = ConsoleTextHelper.Parse(ref text, ident);
 
-            // TODO: If InnerText contains [[...]] then recurse using text after startText before continuing
+            var instance = new ColouredText(innerText, colourDefinition.Colour, colourDefinition.ColourType);
 
-            var instance = new ColouredText(innerText, colourAndType.Item1, colourAndType.Item2);
-
-            text = text.RemoveStartsWith(string.Concat(startText, innerText, endText));
+            text = text.RemoveEndMarkerByIdent(ident);
 
             return instance;
-        }
-
-        /// <summary>
-        /// Parses the type of the colour and.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        /// <returns>Tuple&lt;ConsoleColor, ColorType&gt;.</returns>
-        public static Tuple<ConsoleColor, ColorType> ParseColourAndType(string text)
-        {
-            var parts = text.Split(":".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-
-            var colourText = parts.Last();
-            var colourTypeText = parts.Length > 1
-                ? parts.First()
-                : ColorType.Foreground.ToString();
-
-            ConsoleColor colour;
-            ColorType colourType;
-
-            if (!Enum.TryParse(colourText, out colour))
-            {
-                throw new Exception(string.Format("Invalid Console Colour: {0}", colourText));
-            }
-            if (!Enum.TryParse(colourTypeText, out colourType))
-            {
-                throw new Exception(string.Format("Invalid Colour Type: {0}", colourTypeText));
-            }
-
-            return new Tuple<ConsoleColor, ColorType>(colour, colourType);
         }
     }
 }

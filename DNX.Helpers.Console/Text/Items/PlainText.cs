@@ -50,8 +50,7 @@ namespace DNX.Helpers.Console.Text
         /// <returns><c>true</c> if this instance can parse the specified text; otherwise, <c>false</c>.</returns>
         public static bool CanParse(string text)
         {
-            return !string.IsNullOrEmpty(text)
-                   && (!text.Contains("[[") || !string.IsNullOrEmpty(text.Before("[[")));
+            return !string.IsNullOrEmpty(ConsoleTextHelper.GetCurrentPlainText(text));
         }
 
         /// <summary>
@@ -66,11 +65,11 @@ namespace DNX.Helpers.Console.Text
                 return null;
             }
 
-            var plainText = text.Before("[[");
+            var plainText = ConsoleTextHelper.GetCurrentPlainText(text);
 
             var instance = new PlainText(plainText);
 
-            text = text.RemoveStartsWith(plainText);
+            text = text.RemovePlainText(plainText);
 
             return instance;
         }

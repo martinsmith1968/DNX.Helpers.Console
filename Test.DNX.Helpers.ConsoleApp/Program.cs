@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using DNX.Helpers.Console;
 using DNX.Helpers.Console.Modifiers;
+using DNX.Helpers.Console.Text;
 using DNX.Helpers.Linq;
 using DNX.Helpers.Reflection;
 using DNX.Helpers.Strings;
@@ -20,6 +21,12 @@ namespace Test.DNX.Helpers.ConsoleApp
         private static int Main()
         {
             _textWriter = System.Console.Out;
+
+            var colouredText1 = "Program.exe [[Yellow]]v1.0[[/Yellow]] - [[Blue]]Description[[/Blue]].";
+            var colouredText2 = "[[Yellow]]2017-12-16 [[Red]]Error:[[/Red]] MethodName:[[/Yellow]] Message Text";
+
+            colouredText1.ToConsoleText().WriteLine(_textWriter);
+            colouredText2.ToConsoleText().WriteLine(_textWriter);
 
             TestRunner.TestRunnerType = TestRunnerType.Console;
 

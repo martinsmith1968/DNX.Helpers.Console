@@ -41,7 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IConsoleText.cs" />
-    <Compile Include="Text\ColouredText.cs" />
+    <Compile Include="Text\ConsoleTextExtensions.cs" />
+    <Compile Include="Text\Items\ColouredText.cs" />
     <Compile Include="Enums\ColorType.cs" />
     <Compile Include="Enums\DisplayAtAlignment.cs" />
     <Compile Include="Enums\PauseResult.cs" />
@@ -55,9 +56,12 @@
     <Compile Include="Modifiers\ForegroundColourChanger.cs" />
     <Compile Include="Modifiers\SingleColourChanger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Text\ConsoleColourDefinition.cs" />
     <Compile Include="Text\ConsoleTextHelper.cs" />
     <Compile Include="Text\ConsoleTextCollection.cs" />
-    <Compile Include="Text\PlainText.cs" />
+    <Compile Include="Text\ConsoleTextItem.cs" />
+    <Compile Include="Text\ConsoleTextItemType.cs" />
+    <Compile Include="Text\Items\PlainText.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
