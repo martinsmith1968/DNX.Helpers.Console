@@ -1,6 +1,6 @@
 ﻿using System;
+using DNX.Helpers.Console;
 using DNX.Helpers.Console.Enums;
-using DNX.Helpers.Console.Text;
 using NUnit.Framework;
 
 namespace Test.DNX.Helpers.Console.Text

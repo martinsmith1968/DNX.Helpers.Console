@@ -5,7 +5,7 @@ namespace DNX.Helpers.Console.Interfaces
     /// <summary>
     /// Interface ITextPiece
     /// </summary>
-    public interface IConsoleText
+    public interface IConsoleTextItem
     {
         /// <summary>
         /// Writes the specified text writer.

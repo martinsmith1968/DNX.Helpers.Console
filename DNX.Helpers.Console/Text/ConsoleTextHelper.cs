@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DNX.Helpers.Console.Interfaces;
+using DNX.Helpers.Console.Text.Items;
 using DNX.Helpers.Strings;
 
 namespace DNX.Helpers.Console.Text
@@ -8,7 +9,7 @@ namespace DNX.Helpers.Console.Text
     /// <summary>
     /// Class FormattedText.
     /// </summary>
-    /// <seealso cref="DNX.Helpers.Console.Interfaces.IConsoleText" />
+    /// <seealso cref="DNX.Helpers.Console.Interfaces.IConsoleTextItem" />
     public static class ConsoleTextHelper
     {
         /// <summary>
@@ -27,11 +28,21 @@ namespace DNX.Helpers.Console.Text
         public static string MarkerTerminatorPrefix = "/";
 
         /// <summary>
+        /// Converts the specified raw text to console text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <returns>IConsoleText.</returns>
+        public static IConsoleTextItem ToConsoleText(this string text)
+        {
+            return Parse(text);
+        }
+
+        /// <summary>
         /// Parses the specified text.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <returns>IList&lt;IConsoleText&gt;.</returns>
-        public static IConsoleText Parse(string text)
+        public static IConsoleTextItem Parse(string text)
         {
             return Parse(ref text, null);
         }
@@ -42,9 +53,9 @@ namespace DNX.Helpers.Console.Text
         /// <param name="text">The text.</param>
         /// <param name="endIdent">The end ident.</param>
         /// <returns>DNX.Helpers.Console.Interfaces.IConsoleText.</returns>
-        public static IConsoleText Parse(ref string text, string endIdent)
+        public static IConsoleTextItem Parse(ref string text, string endIdent)
         {
-            var collection = new ConsoleTextCollection();
+            var collection = new TextItemCollection();
 
             do
             {
@@ -56,9 +67,9 @@ namespace DNX.Helpers.Console.Text
                 {
                     if (consoleTextItem.Type == ConsoleTextItemType.EndMarker)
                     {
-                        if (consoleTextItem.Ident != endIdent)
+                        if (consoleTextItem.Identifier != endIdent)
                         {
-                            throw new Exception(string.Format("Invalid Console Text - Expected end marker: {0}, found {1}", endIdent, consoleTextItem.Ident));
+                            throw new Exception(string.Format("Invalid Console Text - Expected end marker: {0}, found {1}", endIdent, consoleTextItem.Identifier));
                         }
 
                         break;
@@ -68,9 +79,8 @@ namespace DNX.Helpers.Console.Text
                 var item = ParseItem(ref text);
                 if (item == null && !string.IsNullOrEmpty(text))
                 {
-                    throw new Exception(string.Format("Invlaid Console Text - Unexpected or unknown Tag ident: {0}:{1}", consoleTextItem.Type, consoleTextItem.Ident));
+                    throw new Exception(string.Format("Invalid Console Text - Unexpected or unknown Tag ident: {0}:{1}", consoleTextItem.Type, consoleTextItem.Identifier));
                 }
-
 
                 if (item != null)
                 {
@@ -88,16 +98,21 @@ namespace DNX.Helpers.Console.Text
         /// </summary>
         /// <param name="text">The text.</param>
         /// <returns>DNX.Helpers.Console.Interfaces.IConsoleText.</returns>
-        private static IConsoleText ParseItem(ref string text)
+        private static IConsoleTextItem ParseItem(ref string text)
         {
-            if (ColouredText.CanParse(text))
+            if (string.IsNullOrEmpty(text))
             {
-                return ColouredText.Parse(ref text);
+                return null;
             }
 
-            if (PlainText.CanParse(text))
+            if (ColouredTextItem.CanParse(text))
             {
-                return PlainText.Parse(ref text);
+                return ColouredTextItem.Parse(ref text);
+            }
+
+            if (PlainTextItem.CanParse(text))
+            {
+                return PlainTextItem.Parse(ref text);
             }
 
             return null;
@@ -108,20 +123,20 @@ namespace DNX.Helpers.Console.Text
         /// </summary>
         /// <param name="text">The text.</param>
         /// <returns>ConsoleTextItem.</returns>
-        public static ConsoleTextItem GetCurrentConsoleTextItem(string text)
+        internal static ConsoleTextItemDetails GetCurrentConsoleTextItem(string text)
         {
             if (!string.IsNullOrEmpty(text))
             {
                 if (!text.StartsWith(MarkerTagStart))
                 {
-                    return ConsoleTextItem.Create(ConsoleTextItemType.PlainText);
+                    return ConsoleTextItemDetails.Create(ConsoleTextItemType.PlainText);
                 }
 
                 var ident = GetCurrentIdent(text);
 
                 return !string.IsNullOrEmpty(ident) && ident.StartsWith(MarkerTerminatorPrefix)
-                    ? ConsoleTextItem.Create(ConsoleTextItemType.EndMarker, ident.RemoveStartsWith(MarkerTerminatorPrefix))
-                    : ConsoleTextItem.Create(ConsoleTextItemType.StartMarker, ident);
+                    ? ConsoleTextItemDetails.Create(ConsoleTextItemType.EndMarker, ident.RemoveStartsWith(MarkerTerminatorPrefix))
+                    : ConsoleTextItemDetails.Create(ConsoleTextItemType.StartMarker, ident);
             }
 
             return null;
@@ -132,7 +147,7 @@ namespace DNX.Helpers.Console.Text
         /// </summary>
         /// <param name="text">The text.</param>
         /// <returns><c>true</c> if [is head a text marker] [the specified text]; otherwise, <c>false</c>.</returns>
-        public static bool IsHeadATextMarker(string text)
+        internal static bool IsHeadATextMarker(string text)
         {
             return !string.IsNullOrEmpty(text) && text.StartsWith(MarkerTagStart);
         }
@@ -142,7 +157,7 @@ namespace DNX.Helpers.Console.Text
         /// </summary>
         /// <param name="text">The text.</param>
         /// <returns>System.String.</returns>
-        public static string GetCurrentPlainText(string text)
+        internal static string GetCurrentPlainText(string text)
         {
             if (IsHeadATextMarker(text))
             {
@@ -159,7 +174,7 @@ namespace DNX.Helpers.Console.Text
         /// </summary>
         /// <param name="text">The text.</param>
         /// <returns>System.String.</returns>
-        public static string GetCurrentIdent(string text)
+        internal static string GetCurrentIdent(string text)
         {
             if (!IsHeadATextMarker(text))
             {
@@ -174,15 +189,17 @@ namespace DNX.Helpers.Console.Text
         /// </summary>
         /// <param name="text">The text.</param>
         /// <returns>System.String.</returns>
-        public static string GetNextMarkerIdent(string text)
+        internal static string GetNextMarkerIdent(string text)
         {
-            var markerText = text.ParseFirstMatchToDictionary(@"\[\[(?<ident>[^\]]+)\]\]");
-            if (!markerText.ContainsKey("ident") || string.IsNullOrEmpty(markerText["ident"]))
+            const string identifierName = "identifier";
+
+            var markerText = text.ParseFirstMatchToDictionary(string.Format(@"\[\[(?<{0}>[^\]]+)\]\]", identifierName));
+            if (!markerText.ContainsKey(identifierName) || string.IsNullOrEmpty(markerText[identifierName]))
             {
                 return null;
             }
 
-            var ident = markerText["ident"];
+            var ident = markerText[identifierName];
 
             return ident;
         }
@@ -193,7 +210,7 @@ namespace DNX.Helpers.Console.Text
         /// <param name="text">The text.</param>
         /// <param name="plainText">The plain text.</param>
         /// <returns>System.String.</returns>
-        public static string RemovePlainText(this string text, string plainText)
+        internal static string RemovePlainText(this string text, string plainText)
         {
             return text.RemoveStartsWith(plainText);
         }
@@ -204,7 +221,7 @@ namespace DNX.Helpers.Console.Text
         /// <param name="text">The text.</param>
         /// <param name="ident">The ident.</param>
         /// <returns>System.String.</returns>
-        public static string RemoveStartMarkerByIdent(this string text, string ident)
+        internal static string RemoveStartMarkerByIdent(this string text, string ident)
         {
             return text.RemoveStartsWith(string.Format("{0}{1}{2}", MarkerTagStart, ident, MarkerTagEnd));
         }
@@ -215,7 +232,7 @@ namespace DNX.Helpers.Console.Text
         /// <param name="text">The text.</param>
         /// <param name="ident">The ident.</param>
         /// <returns>System.String.</returns>
-        public static string RemoveEndMarkerByIdent(this string text, string ident)
+        internal static string RemoveEndMarkerByIdent(this string text, string ident)
         {
             return text.RemoveStartsWith(string.Format("{0}/{1}{2}", MarkerTagStart, ident, MarkerTagEnd));
         }

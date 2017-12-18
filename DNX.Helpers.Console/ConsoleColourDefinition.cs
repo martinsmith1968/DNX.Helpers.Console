@@ -2,7 +2,7 @@
 using System.Linq;
 using DNX.Helpers.Console.Enums;
 
-namespace DNX.Helpers.Console.Text
+namespace DNX.Helpers.Console
 {
     /// <summary>
     /// Class ConsoleColourAndType.
@@ -70,15 +70,15 @@ namespace DNX.Helpers.Console.Text
             ConsoleColor colour;
             ColorType colourType;
 
-            if (!Enum.TryParse(colourText, true, out colour))
+            if (Enum.TryParse(colourText, true, out colour) && Enum.TryParse(colourTypeText, true, out colourType))
             {
-                return null;
-                throw new Exception(string.Format("Invalid Console Colour: {0}", colourText));
             }
-            if (!Enum.TryParse(colourTypeText, true, out colourType))
+            else if (Enum.TryParse(colourTypeText, true, out colour) && Enum.TryParse(colourText, true, out colourType))
+            {
+            }
+            else
             {
                 return null;
-                throw new Exception(string.Format("Invalid Colour Type: {0}", colourTypeText));
             }
 
             var instance = new ConsoleColourDefinition(colour, colourType);

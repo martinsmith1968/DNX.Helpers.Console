@@ -1,23 +1,21 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using DNX.Helpers.Console.Enums;
 using DNX.Helpers.Console.Interfaces;
 using DNX.Helpers.Console.Modifiers;
-using DNX.Helpers.Strings;
 
-namespace DNX.Helpers.Console.Text
+namespace DNX.Helpers.Console.Text.Items
 {
     /// <summary>
-    /// Class ColouredText.
+    /// Class ColouredTextItem.
     /// </summary>
-    public class ColouredText : IConsoleText
+    public class ColouredTextItem : IConsoleTextItem
     {
         /// <summary>
         /// Gets or sets the text.
         /// </summary>
         /// <value>The text.</value>
-        public IConsoleText Text { get; private set; }
+        public IConsoleTextItem Text { get; private set; }
 
         /// <summary>
         /// Gets the colour changer.
@@ -32,23 +30,23 @@ namespace DNX.Helpers.Console.Text
         public ColorType ColourType { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ColouredText" /> class.
+        /// Initializes a new instance of the <see cref="ColouredTextItem" /> class.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="colour">The colour.</param>
         /// <param name="colourType">Type of the colour.</param>
-        public ColouredText(string text, ConsoleColor colour, ColorType colourType)
-            : this(new PlainText(text), colour, colourType)
+        public ColouredTextItem(string text, ConsoleColor colour, ColorType colourType)
+            : this(new PlainTextItem(text), colour, colourType)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ColouredText"/> class.
+        /// Initializes a new instance of the <see cref="ColouredTextItem"/> class.
         /// </summary>
         /// <param name="consoleText">The console text.</param>
         /// <param name="colour">The colour.</param>
         /// <param name="colorType">Type of the color.</param>
-        public ColouredText(IConsoleText consoleText, ConsoleColor colour, ColorType colorType)
+        public ColouredTextItem(IConsoleTextItem consoleText, ConsoleColor colour, ColorType colorType)
         {
             Text       = consoleText;
             Colour     = colour;
@@ -95,25 +93,25 @@ namespace DNX.Helpers.Console.Text
         /// Parses the specified text.
         /// </summary>
         /// <param name="text">The text.</param>
-        /// <returns>ColouredText.</returns>
-        public static ColouredText Parse(ref string text)
+        /// <returns>ColouredTextItem.</returns>
+        public static ColouredTextItem Parse(ref string text)
         {
             if (!CanParse(text))
             {
                 return null;
             }
 
-            var ident = ConsoleTextHelper.GetNextMarkerIdent(text);
+            var identifier = ConsoleTextHelper.GetNextMarkerIdent(text);
 
-            var colourDefinition = ConsoleColourDefinition.FromText(ident);
+            var colourDefinition = ConsoleColourDefinition.FromText(identifier);
 
-            text = text.RemoveStartMarkerByIdent(ident);
+            text = text.RemoveStartMarkerByIdent(identifier);
 
-            var innerText = ConsoleTextHelper.Parse(ref text, ident);
+            var innerText = ConsoleTextHelper.Parse(ref text, identifier);
 
-            var instance = new ColouredText(innerText, colourDefinition.Colour, colourDefinition.ColourType);
+            var instance = new ColouredTextItem(innerText, colourDefinition.Colour, colourDefinition.ColourType);
 
-            text = text.RemoveEndMarkerByIdent(ident);
+            text = text.RemoveEndMarkerByIdent(identifier);
 
             return instance;
         }

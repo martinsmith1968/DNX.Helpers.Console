@@ -31,8 +31,17 @@ namespace DNX.Helpers.Console.Modifiers
         /// <summary>
         /// Initializes a new instance of the <see cref="SingleColourChanger" /> class.
         /// </summary>
+        /// <param name="definition">The definition.</param>
+        public SingleColourChanger(ConsoleColourDefinition definition)
+            : this(definition.Colour, definition.ColourType)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SingleColourChanger"/> class.
+        /// </summary>
         /// <param name="colour">The colour.</param>
-        /// <param name="colorType">Type of the colour.</param>
+        /// <param name="colorType">Type of the color.</param>
         public SingleColourChanger(ConsoleColor colour, ColorType colorType)
         {
             PreviousColour = ConsoleHelper.GetColor(colorType);

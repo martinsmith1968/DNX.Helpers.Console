@@ -2,26 +2,26 @@
 using System.IO;
 using DNX.Helpers.Console.Interfaces;
 
-namespace DNX.Helpers.Console.Text
+namespace DNX.Helpers.Console.Text.Items
 {
     /// <summary>
     /// Class ConsoleTextCollection.
     /// </summary>
-    /// <seealso cref="DNX.Helpers.Console.Interfaces.IConsoleText" />
-    public class ConsoleTextCollection : IConsoleText
+    /// <seealso cref="DNX.Helpers.Console.Interfaces.IConsoleTextItem" />
+    public class TextItemCollection : IConsoleTextItem
     {
         /// <summary>
         /// Gets the parts.
         /// </summary>
         /// <value>The parts.</value>
-        public IList<IConsoleText> Parts { get; private set; }
+        public IList<IConsoleTextItem> Parts { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleTextHelper" /> class.
         /// </summary>
-        public ConsoleTextCollection()
+        public TextItemCollection()
         {
-            Parts = new List<IConsoleText>();
+            Parts = new List<IConsoleTextItem>();
         }
 
         /// <summary>

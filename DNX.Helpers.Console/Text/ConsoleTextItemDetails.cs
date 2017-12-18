@@ -3,7 +3,7 @@
     /// <summary>
     /// Class ConsoleTextItem.
     /// </summary>
-    public class ConsoleTextItem
+    public class ConsoleTextItemDetails
     {
         /// <summary>
         /// Gets the type.
@@ -12,20 +12,20 @@
         public ConsoleTextItemType Type { get; private set; }
 
         /// <summary>
-        /// Gets the ident.
+        /// Gets the identifier.
         /// </summary>
-        /// <value>The ident.</value>
-        public string Ident { get; private set; }
+        /// <value>The identifier.</value>
+        public string Identifier { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConsoleTextItem" /> class.
+        /// Initializes a new instance of the <see cref="ConsoleTextItemDetails" /> class.
         /// </summary>
         /// <param name="type">The type.</param>
-        /// <param name="ident">The ident.</param>
-        private ConsoleTextItem(ConsoleTextItemType type, string ident)
+        /// <param name="identifier">The identifier.</param>
+        private ConsoleTextItemDetails(ConsoleTextItemType type, string identifier)
         {
-            Type  = type;
-            Ident = ident;
+            Type       = type;
+            Identifier = identifier;
         }
 
         /// <summary>
@@ -33,7 +33,7 @@
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>ConsoleTextItem.</returns>
-        public static ConsoleTextItem Create(ConsoleTextItemType type)
+        public static ConsoleTextItemDetails Create(ConsoleTextItemType type)
         {
             return Create(type, null);
         }
@@ -42,11 +42,11 @@
         /// Creates the specified type.
         /// </summary>
         /// <param name="type">The type.</param>
-        /// <param name="ident">The ident.</param>
+        /// <param name="identifier">The identifier.</param>
         /// <returns>DNX.Helpers.Console.Text.ConsoleTextItem.</returns>
-        public static ConsoleTextItem Create(ConsoleTextItemType type, string ident)
+        public static ConsoleTextItemDetails Create(ConsoleTextItemType type, string identifier)
         {
-            var instance = new ConsoleTextItem(type, ident);
+            var instance = new ConsoleTextItemDetails(type, identifier);
 
             return instance;
         }

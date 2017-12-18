@@ -1,13 +1,13 @@
 ﻿using System;
 using DNX.Helpers.Console.Enums;
-using DNX.Helpers.Console.Text;
+using DNX.Helpers.Console.Text.Items;
 using NUnit.Framework;
 using Shouldly;
 
-namespace Test.DNX.Helpers.Console.Text
+namespace Test.DNX.Helpers.Console.Text.Items
 {
     [TestFixture]
-    public class ColouredTextTests
+    public class ColouredTextItemTests
     {
         [Test]
         public void Parse_should_parse_a_simple_definition_successfully()
@@ -16,7 +16,7 @@ namespace Test.DNX.Helpers.Console.Text
             var text = "[[Red]]This text is Red[[/Red]]";
 
             // Act
-            var result = ColouredText.Parse(ref text);
+            var result = ColouredTextItem.Parse(ref text);
 
             // Assert
             text.ShouldBeNullOrEmpty();
@@ -25,9 +25,9 @@ namespace Test.DNX.Helpers.Console.Text
             result.ColourType.ShouldBe(ColorType.Foreground);
             result.Text.ShouldNotBeNull();
 
-            var innerTextCollection = result.Text.ShouldBeOfType<ConsoleTextCollection>();
+            var innerTextCollection = result.Text.ShouldBeOfType<TextItemCollection>();
             innerTextCollection.Parts.Count.ShouldBe(1);
-            var plainText = innerTextCollection.Parts[0].ShouldBeOfType<PlainText>();
+            var plainText = innerTextCollection.Parts[0].ShouldBeOfType<PlainTextItem>();
             plainText.Text.ShouldBe("This text is Red");
         }
 
@@ -38,7 +38,7 @@ namespace Test.DNX.Helpers.Console.Text
             var text = "[[Foreground:Red]]This text is Red[[/Foreground:Red]]";
 
             // Act
-            var result = ColouredText.Parse(ref text);
+            var result = ColouredTextItem.Parse(ref text);
 
             // Assert
             text.ShouldBeNullOrEmpty();
@@ -47,9 +47,9 @@ namespace Test.DNX.Helpers.Console.Text
             result.ColourType.ShouldBe(ColorType.Foreground);
             result.Text.ShouldNotBeNull();
 
-            var innerTextCollection = result.Text.ShouldBeOfType<ConsoleTextCollection>();
+            var innerTextCollection = result.Text.ShouldBeOfType<TextItemCollection>();
             innerTextCollection.Parts.Count.ShouldBe(1);
-            var plainText = innerTextCollection.Parts[0].ShouldBeOfType<PlainText>();
+            var plainText = innerTextCollection.Parts[0].ShouldBeOfType<PlainTextItem>();
             plainText.Text.ShouldBe("This text is Red");
         }
 
@@ -60,7 +60,7 @@ namespace Test.DNX.Helpers.Console.Text
             var text = "[[Background:Red]]This text is Red[[/Background:Red]]";
 
             // Act
-            var result = ColouredText.Parse(ref text);
+            var result = ColouredTextItem.Parse(ref text);
 
             // Assert
             text.ShouldBeNullOrEmpty();
@@ -69,9 +69,9 @@ namespace Test.DNX.Helpers.Console.Text
             result.ColourType.ShouldBe(ColorType.Background);
             result.Text.ShouldNotBeNull();
 
-            var innerTextCollection = result.Text.ShouldBeOfType<ConsoleTextCollection>();
+            var innerTextCollection = result.Text.ShouldBeOfType<TextItemCollection>();
             innerTextCollection.Parts.Count.ShouldBe(1);
-            var plainText = innerTextCollection.Parts[0].ShouldBeOfType<PlainText>();
+            var plainText = innerTextCollection.Parts[0].ShouldBeOfType<PlainTextItem>();
             plainText.Text.ShouldBe("This text is Red");
         }
     }

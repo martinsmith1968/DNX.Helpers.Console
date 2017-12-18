@@ -124,7 +124,7 @@ namespace DNX.Helpers.Console.Extensions
         /// </summary>
         /// <param name="textWriter">The text writer.</param>
         /// <param name="consoleText">The text piece.</param>
-        public static void Write(this TextWriter textWriter, IConsoleText consoleText)
+        public static void Write(this TextWriter textWriter, IConsoleTextItem consoleText)
         {
             consoleText.Write(textWriter);
         }
@@ -134,7 +134,7 @@ namespace DNX.Helpers.Console.Extensions
         /// </summary>
         /// <param name="textWriter">The text writer.</param>
         /// <param name="consoleText">The text piece.</param>
-        public static void WriteLine(this TextWriter textWriter, IConsoleText consoleText)
+        public static void WriteLine(this TextWriter textWriter, IConsoleTextItem consoleText)
         {
             consoleText.Write(textWriter);
         }

@@ -1,14 +1,13 @@
 ﻿using System.IO;
 using DNX.Helpers.Console.Interfaces;
-using DNX.Helpers.Strings;
 
-namespace DNX.Helpers.Console.Text
+namespace DNX.Helpers.Console.Text.Items
 {
     /// <summary>
     /// Class RawText.
     /// </summary>
-    /// <seealso cref="DNX.Helpers.Console.Interfaces.IConsoleText" />
-    public class PlainText : IConsoleText
+    /// <seealso cref="DNX.Helpers.Console.Interfaces.IConsoleTextItem" />
+    public class PlainTextItem : IConsoleTextItem
     {
         /// <summary>
         /// Gets the text.
@@ -17,10 +16,10 @@ namespace DNX.Helpers.Console.Text
         public string Text { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlainText"/> class.
+        /// Initializes a new instance of the <see cref="PlainTextItem"/> class.
         /// </summary>
         /// <param name="text">The text.</param>
-        public PlainText(string text)
+        public PlainTextItem(string text)
         {
             Text = text;
         }
@@ -57,8 +56,8 @@ namespace DNX.Helpers.Console.Text
         /// Parses the specified text.
         /// </summary>
         /// <param name="text">The text.</param>
-        /// <returns>PlainText.</returns>
-        public static PlainText Parse(ref string text)
+        /// <returns>PlainTextItem.</returns>
+        public static PlainTextItem Parse(ref string text)
         {
             if (!CanParse(text))
             {
@@ -67,7 +66,7 @@ namespace DNX.Helpers.Console.Text
 
             var plainText = ConsoleTextHelper.GetCurrentPlainText(text);
 
-            var instance = new PlainText(plainText);
+            var instance = new PlainTextItem(plainText);
 
             text = text.RemovePlainText(plainText);
 
